@@ -1,7 +1,7 @@
 <template>
     <div class="signIn container">
       <h1>Flashcards</h1>
-      <h2>Sign in</h2>
+      <h2 class="large">Sign in</h2>
       <div class="mb-3">
             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
         </div>
@@ -9,10 +9,10 @@
             <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter password">
         </div>
       <button type="button" class="btn btn-secondary">Sign In</button>
-      <h3>Or</h3>
+      <h2 class="medium">Or</h2>
       <button type="button" class="btn btn-secondary">Sing Up with Google</button>
-        <h4>Forgot password?</h4>
-        <h5>Dont't have an account?</h5>
+        <h2 class="small">Forgot password?</h2>
+        <h2 class="small">Dont't have an account?</h2>
     </div>
   </template>
   
@@ -21,42 +21,43 @@
     margin-bottom: 50px;}
 
     button {
-    width: 30%;
-    font-size: 1em;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    }
+        width: 90%;
+        max-width: 400px;
+        font-size: 1em;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        font-family: 'Lato';
+ 
+    } 
 
     h1 {
         font-family: 'Chewy'; font-size: 50px; color: green;
         margin-bottom: 40px;
     }
 
-    h2 {
-        margin-bottom: 100px;
+    .large {
+        margin-bottom: 60px;
     }
 
-    h4 {
-        margin-bottom: 20px;
+    .medium {
         font-size: 15px;
 
     }
 
-    h5 {
+    .small {
         margin-bottom: 20px;
-        font-size: 15px;
+        font-size: 10px;
 
-    }
-
-    .form-label {
-        font-family: 'Lato'; font-size: 20px; 
-        margin-top: 20px;
-        margin-bottom: 20px;
-        width: 30%;
     }
 
     .form-control {
-        width: 30%; 
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto; 
+        max-width: 400px;
+        font-family: 'Lato';
     }
 
 </style>

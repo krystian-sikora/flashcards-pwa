@@ -5,6 +5,7 @@ import './registerServiceWorker'
 import router from './router'
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import './assets/styles.css'
 import { initializeApp } from 'firebase/app'
 import { getFirestore, collection } from 'firebase/firestore'
 import { getAnalytics } from "firebase/analytics";

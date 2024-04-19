@@ -75,7 +75,7 @@ function signUp() {
 
 <template>
     <div class="signIn">
-        <h1>
+        <h1 class="logo">
             Flashcards
         </h1>
         <h2>
@@ -135,11 +135,6 @@ function signUp() {
         margin-right: auto; 
         font-family: 'Lato';
 
-    }
-
-    h1 {
-        font-family: 'Chewy'; font-size: 50px; color: green;
-        margin-bottom: 40px;
     }
 
     .large {

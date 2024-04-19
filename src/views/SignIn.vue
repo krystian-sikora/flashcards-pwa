@@ -57,7 +57,7 @@ onMounted(() => {
 
 <template>
     <div class="signIn container">
-        <h1>Flashcards</h1>
+        <h1 class="logo">Flashcards</h1>
         <h2 class="large">Sign in</h2>
         <h1 v-if="errorCode">
             <p>todo: add error handling instead of below</p>
@@ -110,11 +110,6 @@ button {
     margin-right: auto;
     font-family: 'Lato';
 
-}
-
-h1 {
-    font-family: 'Chewy'; font-size: 50px; color: green;
-    margin-bottom: 40px;
 }
 
 .large {

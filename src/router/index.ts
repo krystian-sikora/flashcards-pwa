@@ -27,7 +27,17 @@ const routes = [
     path: '/study',
     name: 'study',
     component: () => import('../views/StudyView.vue')
-  }
+  },
+  {
+    path: '/newsetname',
+    name: 'newsetname',
+    component: () => import('../views/NewSet.vue')
+  },
+  {
+    path: '/addflashcard',
+    name: 'addflashcard',
+    component: () => import('../views/AddFlashcard.vue')
+  },
 ]
 
 const router = createRouter({

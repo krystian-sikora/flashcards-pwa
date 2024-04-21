@@ -80,13 +80,13 @@ onMounted(() => {
                 v-model="password"
             >
         </div>
-        <button type="button" class="btn btn-secondary" @click="signin()">
+        <button type="button" class="btn btn-secondary form-btn" @click="signin()">
             Sign In
         </button>
         <h2 class="medium">
             Or
         </h2>
-        <button type="button" class="btn btn-secondary" @click="signinRedirect()">
+        <button type="button" class="btn btn-secondary form-btn" @click="signinRedirect()">
             Sing Up with Google
         </button>
         <h2 class="small">
@@ -99,18 +99,6 @@ onMounted(() => {
 </template>
 
 <style>
-
-button {
-    width: 90%;
-    max-width: 400px;
-    font-size: 1em;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    margin-left: auto;
-    margin-right: auto;
-    font-family: 'Lato';
-
-}
 
 .large {
     margin-bottom: 60px;

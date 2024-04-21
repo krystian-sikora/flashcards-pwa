@@ -108,13 +108,13 @@ function signUp() {
                 v-model="repeatedPassword"
             >
         </div>
-        <button type="button" class="btn btn-secondary"
+        <button type="button" class="btn btn-secondary form-btn"
             @click="signUp()"
         >
             Sign In
         </button>
         <h2 class="medium">Or</h2>
-        <button type="button" class="btn btn-secondary" @click="signinRedirect()">
+        <button type="button" class="btn btn-secondary form-btn" @click="signinRedirect()">
             Sing Up with Google
         </button>
         <h2 class="small">Already have an account?</h2>
@@ -122,47 +122,34 @@ function signUp() {
 </template>
   
 <style>
-    .signIn {font-family: 'Lato'; font-size: 20px; 
-    margin-bottom: 50px;}
 
-    button {
-        width: 90%;
-        max-width: 400px;
-        font-size: 1em;
-        margin-top: 30px;
-        margin-bottom: 30px;
-        margin-left: auto;
-        margin-right: auto; 
-        font-family: 'Lato';
+.signIn {
+    font-family: 'Lato'; 
+    font-size: 20px; 
+    margin-bottom: 50px;
+}
 
-    }
-    
-    h1 {
-        font-family: 'Chewy'; font-size: 50px; color: green;
-        margin-bottom: 40px;
-    }
+.large {
+    margin-bottom: 60px;
+}
 
-    .large {
-        margin-bottom: 60px;
-    }
+.medium {
+    font-size: 15px;
 
-    .medium {
-        font-size: 15px;
+}
 
-    }
+.small {
+    margin-bottom: 20px;
+    font-size: 10px;
 
-    .small {
-        margin-bottom: 20px;
-        font-size: 10px;
+}
 
-    }
-
-    .form-control {
-        width: 90%;
-        margin-left: auto;
-        margin-right: auto; 
-        max-width: 400px;
-        font-family: 'Lato';
-    }
+.form-control {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto; 
+    max-width: 400px;
+    font-family: 'Lato';
+}
 
 </style>

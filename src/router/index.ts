@@ -4,28 +4,18 @@ import { getCurrentUser } from "vuefire";
 
 const routes = [
   {
-    path: "/",
-    name: "home",
+    path: '/',
+    name: 'home',
     component: HomeView,
   },
   {
-    path: "/about",
-    name: "about",
-    component: () => import('../views/AboutView.vue')
-  },
-  {
-    path: '/first',
-    name: 'first',
-    component: () => import('../views/FirstView.vue')
-  },
-  {
-    path: '/SignIn',
-    name: 'SignIn',
+    path: '/signin',
+    name: 'signin',
     component: () => import('../views/SignIn.vue')
   },
   {
-    path: '/signUp',
-    name: 'signUp',
+    path: '/signup',
+    name: 'signup',
     component: () => import('../views/SignUp.vue')
   },
   {

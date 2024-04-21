@@ -1,23 +1,49 @@
+<script setup>
+
+import IconLogout from '@/icons/IconLogout.vue'
+import { signOut, getAuth } from 'firebase/auth'
+import { useCurrentUser } from 'vuefire'
+
+const auth = getAuth()
+const user = useCurrentUser()
+
+function logOut() {
+  signOut(auth)
+}
+
+</script>
+
+
+
 <template>
-  <nav>
+  <IconLogout class="icon-logout" v-if="user" @click="logOut()"/>
+  <!-- <nav>
     <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> |
-    <router-link to="/first">First Screen</router-link> |
-    <router-link to="/signIn">Sing In</router-link> |
-    <router-link to="/signUp">Sign Up</router-link> |
+    <router-link to="/signin">Sing In</router-link> |
+    <router-link to="/signup">Sign Up</router-link> |
     <router-link to="/menu">Menu</router-link> |
     <router-link to="/study">Study</router-link>
-  </nav>
-  <router-view/>
+  </nav> -->
+  <h1 v-if="user">Signed in as {{ auth.currentUser.email }}</h1>
+  <router-view style="padding-top: 100px;"/>
 </template>
 
 <style>
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+.icon-logout {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  width: 50px;
 }
 
 nav {
@@ -32,4 +58,5 @@ nav a {
 nav a.router-link-exact-active {
   color: #42b983;
 }
+
 </style>

@@ -136,6 +136,11 @@ function signUp() {
         font-family: 'Lato';
 
     }
+    
+    h1 {
+        font-family: 'Chewy'; font-size: 50px; color: green;
+        margin-bottom: 40px;
+    }
 
     .large {
         margin-bottom: 60px;

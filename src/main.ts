@@ -12,7 +12,7 @@ import { getAnalytics } from "firebase/analytics";
 // ... other firebase imports
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAwEBcnsS4DGQubmV5AIux2cA2Mjh-WYyQ",
+    apiKey: process.env.VUE_APP_FIREBASE_KEY,
     authDomain: "flashcards-23ed2.firebaseapp.com",
     projectId: "flashcards-23ed2",
     storageBucket: "flashcards-23ed2.appspot.com",

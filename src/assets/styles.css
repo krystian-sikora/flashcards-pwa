@@ -23,6 +23,10 @@
     font-weight: 300;
 }
 
+.primary-text {
+    font-size: 25px;
+}
+
 .container > * {
     max-width: 320px;
     margin-left: auto;

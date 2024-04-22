@@ -75,7 +75,7 @@ function signUp() {
 <template>
     <div class="container">
         <h1 class="logo">Flashcards</h1>
-        <h2 class="lato-light">Sign Up</h2>
+        <h2 class="lato-light primary-text">Sign Up</h2>
         <h1 v-if="errorCode">
             <p>todo: add error handling instead of below</p>
             {{ errorCode }}

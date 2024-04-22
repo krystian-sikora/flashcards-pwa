@@ -9,8 +9,8 @@ const router = useRouter()
   <div class="container">
     
     <h1 class="logo">Flashcards</h1>
-    <h2 class="lato-light">Welcome to our Flashcards!</h2>
-    <h2 class="lato-light">To start please</h2>
+    <h2 class="lato-light primary-text">Welcome to our Flashcards!</h2>
+    <h2 class="lato-light primary-text">To start please</h2>
     <div class="container-mt-12">
       <button type="button" class="btn btn-secondary btn-first" @click="router.push({name: 'signin'})">
         Sign In

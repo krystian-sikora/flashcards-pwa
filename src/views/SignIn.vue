@@ -77,7 +77,7 @@ onMounted(() => {
             <p>todo: add error handling instead of below</p>
             {{ errorCode }}
         </h1>
-        <h2 class="lato-light">Sign in</h2>
+        <h2 class="lato-light primary-text">Sign in</h2>
         <div class="container-mt-12">
             <input type="email" 
                 class="form-control input" 

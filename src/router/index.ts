@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import { getCurrentUser } from "vuefire";
+import MenuView from "@/views/MenuView.vue";
 
 const routes = [
   {
@@ -21,7 +22,7 @@ const routes = [
   {
     path: '/menu',
     name: 'menu',
-    component: () => import('../views/MenuView.vue')
+    component: MenuView,
   },
   {
     path: '/study',

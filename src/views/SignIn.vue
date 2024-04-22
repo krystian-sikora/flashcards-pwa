@@ -1,4 +1,5 @@
 <script>
+import router from '@/router'
 import { 
     GoogleAuthProvider,
     signInWithEmailAndPassword,
@@ -7,6 +8,7 @@ import {
 } from 'firebase/auth'
 import { onMounted, ref } from 'vue'
 import { useFirebaseAuth } from 'vuefire'
+import IconGoogle from '@/icons/IconGoogle.vue'
 
 export const googleAuthProvider = new GoogleAuthProvider()
 </script>
@@ -17,10 +19,15 @@ const email = ref('')
 const password = ref('')
 const errorCode = ref('')
 
-const auth = useFirebaseAuth() // only exists on client side
+const auth = useFirebaseAuth()
 
 // display errors if any
 const error = ref(null)
+
+function redirectToHome() {
+    router.push('/menu')
+}
+
 function signinRedirect() {
   signInWithRedirect(auth, googleAuthProvider).catch((reason) => {
     console.error('Failed signinRedirect', reason)
@@ -34,6 +41,8 @@ function signin() {
             // Signed in 
             const user = userCredential.user;
             // todo: redirect to home page or smth
+            redirectToHome()
+
         })
         .catch((error) => {
             errorCode.value = error.code;
@@ -43,93 +52,56 @@ function signin() {
   });
 }
 
-
-
 // only on client side
 onMounted(() => {
-  getRedirectResult(auth).catch((reason) => {
-    console.error('Failed redirect result', reason)
-    error.value = reason
-  })
+    getRedirectResult(auth)
+        .then((result) => {
+            // console.log('redirect result', result)
+            if (result && result.user) {
+            // User is signed in.
+                redirectToHome()
+            }
+        })
+        .catch((reason) => {
+            console.error('Failed redirect result', reason)
+            error.value = reason
+        })
 })
 
 </script>
 
 <template>
-    <div class="signIn container">
+    <div class="container">
         <h1 class="logo">Flashcards</h1>
-        <h2 class="large">Sign in</h2>
-        <h1 v-if="errorCode">
+        <h1 v-if="errorCode" style="color: red;">
             <p>todo: add error handling instead of below</p>
             {{ errorCode }}
         </h1>
-        <div class="mb-3">
+        <h2 class="lato-light">Sign in</h2>
+        <div class="container-mt-12">
             <input type="email" 
-                class="form-control" 
+                class="form-control input" 
                 id="exampleInputEmail1" 
                 aria-describedby="emailHelp" 
-                placeholder="Enter email"
-                v-model="email"
-            >
-        </div>
-        <div class="mb-3">
+                placeholder="Email"
+                v-model="email">
             <input type="password" 
-                class="form-control" 
+                class="form-control input" 
                 id="exampleInputPassword1" 
-                placeholder="Enter password"
-                v-model="password"
-            >
+                placeholder="Password"
+                v-model="password">
+            <button type="button" class="btn btn-secondary btn-first" @click="signin()">
+                Sign In
+            </button>
+            <h2 style="font-size: 15px;">
+                or
+            </h2>
+            <button type="button" class="btn btn-secondary btn-second" @click="signinRedirect()" style="position: relative;">
+                <IconGoogle class="icon-google"/>
+                Sign In with Google
+            </button>
+            <h2 style="font-size: 10px;">Forgot password?</h2>
+            <h2 style="font-size: 10px;">Dont't have an account?</h2>
         </div>
-        <button type="button" class="btn btn-secondary form-btn" @click="signin()">
-            Sign In
-        </button>
-        <h2 class="medium">
-            Or
-        </h2>
-        <button type="button" class="btn btn-secondary form-btn" @click="signinRedirect()">
-            Sing Up with Google
-        </button>
-        <h2 class="small">
-            Forgot password?
-        </h2>
-        <h2 class="small">
-            Dont't have an account?
-        </h2>
     </div>
 </template>
-
-<style>
-
-.large {
-    margin-bottom: 60px;
-}
-
-.medium {
-    font-size: 15px;
-}
-
-.form-label {
-    font-family: 'Lato'; font-size: 20px; 
-    margin-top: 20px;
-    margin-bottom: 20px;
-    width: 30%;
-}
-
-.small {
-    margin-bottom: 20px;
-    font-size: 10px;
-}
-
-.container {
-    text-align: center;
-}
-
-.form-control {
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto; 
-    max-width: 400px;
-    font-family: 'Lato';
-}
-
-</style>

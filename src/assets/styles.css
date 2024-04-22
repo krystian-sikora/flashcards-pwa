@@ -1,18 +1,88 @@
-.logo {
-    font-family: 'Chewy'; 
-    font-size: 50px; 
-    color: green;
-    margin-bottom: 40px;
+:root {
+    --logo-first-color: #3f7c61;
+    --logo-second-color: #384cad;
+    --main-color: #1e574d;
+    --grey-darker: #47525E;
+    --grey-lighter: #8190A5;
+    --grey-even-lighter: #B3B3B3;
+    --btn-color: var(--main-color);
 }
 
-.form-btn {
+.logo {
+    font-family: 'Chewy'; 
+    font-size: 50px;
+    margin: 40px 0px;
+    background: -webkit-linear-gradient(315deg, #3f7c61 25%, #384cad);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.lato-light, .input {
+    font-family: 'Lato';
+    font-weight: 300;
+}
+
+.container > * {
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.container-mt-12 > * {
+    margin-top: 12px;
+    margin-bottom: 0px;
+}
+
+.input {
+    border-radius: 0px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto; 
+    max-width: 400px;
+}
+
+.btn-first {
+    background-color: var(--btn-color);
+    border-color: var(--btn-color);
+    border-width: 1px;
+}
+
+.btn-first:hover {
+    background-color: white;
+    color: var(--btn-color);
+    border-color: var(--btn-color);
+    border-width: 1px;
+}
+
+.btn-second {
+    background-color: white;
+    border-width: 0px;
+    color: var(--btn-color);
+    border-color: var(--btn-color);
+    border-width: 1px;
+}
+
+.btn-second:hover {
+    background-color: var(--btn-color);
+    color: white;
+    border-color: var(--btn-color);
+    border-width: 1px;
+}
+
+.btn-first, .btn-second {
     width: 90%;
     height: 45px;
-    max-width: 400px;
     font-size: 1em;
-    margin-top: 30px;
-    margin-bottom: 30px;
     font-family: 'Lato';
     margin-left: auto;
     margin-right: auto;
+}
+
+.icon-google {
+    position: absolute;
+    width: 19px;
+    left: 16px;
+    top: 13px;
+    margin: 0 auto 0 auto;
 }

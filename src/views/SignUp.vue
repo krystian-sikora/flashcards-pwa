@@ -7,6 +7,7 @@ import {
 } from 'firebase/auth'
 import { onMounted, ref } from 'vue'
 import { useFirebaseAuth } from 'vuefire'
+import IconGoogle from '@/icons/IconGoogle.vue'
 
 export const googleAuthProvider = new GoogleAuthProvider()
 </script>
@@ -69,87 +70,39 @@ function signUp() {
         });
 }
 
-
-
 </script>
 
 <template>
-    <div class="signIn">
-        <h1 class="logo">
-            Flashcards
-        </h1>
-        <h2 class="large">
-            Sign Up
-        </h2>
-        
+    <div class="container">
+        <h1 class="logo">Flashcards</h1>
+        <h2 class="lato-light primary-text">Sign Up</h2>
         <h1 v-if="errorCode">
             <p>todo: add error handling instead of below</p>
             {{ errorCode }}
         </h1>
-        <div class="mb-3">
+        <div class="container-mt-12">
             <input type="email" 
-                class="form-control" 
+                class="form-control input" 
                 aria-describedby="emailHelp" 
-                placeholder="Enter email"
-                v-model="email"
-            >
-        </div>
-        <div class="mb-3">
+                placeholder="Email"
+                v-model="email">
             <input type="password" 
-                class="form-control" 
-                placeholder="Enter password"
-                v-model="password"
-            >
-        </div>
-        <div class="mb-3">
+                class="form-control input" 
+                placeholder="Password"
+                v-model="password">
             <input type="password" 
-                class="form-control" 
+                class="form-control input" 
                 placeholder="Repeat password"
-                v-model="repeatedPassword"
-            >
+                v-model="repeatedPassword">
+            <button type="button" class="btn btn-secondary btn-first" @click="signUp()">
+                Sign Up
+            </button>
+            <h2 style="font-size: 15px;">or</h2>
+            <button type="button" class="btn btn-secondary btn-second" @click="signinRedirect()" style="position: relative;">
+                <IconGoogle class="icon-google"/>
+                Sign Up with Google
+            </button>
+            <h2 style="font-size: 10px;">Already have an account?</h2>
         </div>
-        <button type="button" class="btn btn-secondary form-btn"
-            @click="signUp()"
-        >
-            Sign In
-        </button>
-        <h2 class="medium">Or</h2>
-        <button type="button" class="btn btn-secondary form-btn" @click="signinRedirect()">
-            Sing Up with Google
-        </button>
-        <h2 class="small">Already have an account?</h2>
     </div>
 </template>
-  
-<style>
-
-.signIn {
-    font-family: 'Lato'; 
-    font-size: 20px; 
-    margin-bottom: 50px;
-}
-
-.large {
-    margin-bottom: 60px;
-}
-
-.medium {
-    font-size: 15px;
-
-}
-
-.small {
-    margin-bottom: 20px;
-    font-size: 10px;
-
-}
-
-.form-control {
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto; 
-    max-width: 400px;
-    font-family: 'Lato';
-}
-
-</style>

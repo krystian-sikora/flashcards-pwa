@@ -3,17 +3,21 @@
 import IconLogout from '@/icons/IconLogout.vue'
 import { signOut, getAuth } from 'firebase/auth'
 import { useCurrentUser } from 'vuefire'
+import router from './router';
 
 const auth = getAuth()
 const user = useCurrentUser()
 
 function logOut() {
-  signOut(auth)
+  signOut(auth).then(() => {
+    console.log('logged out')
+    router.push('/')
+  }).catch((error) => {
+    console.error('failed to log out', error)
+  })
 }
 
 </script>
-
-
 
 <template>
   <IconLogout class="icon-logout" v-if="user" @click="logOut()"/>

@@ -28,7 +28,7 @@
     max-width: 400px;
 }
 
-.button-container{
+.button-container {
     display: flex;
     flex-direction: column;
 }

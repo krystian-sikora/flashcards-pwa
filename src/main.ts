@@ -26,10 +26,7 @@ export const firebaseApp = initializeApp(firebaseConfig)
 const analytics = getAnalytics(firebaseApp)
 
 // used for the firestore refs
-const db = getFirestore(firebaseApp)
-
-// here we can export reusable database references
-export const todosRef = collection(db, 'flashcards')
+export const db = getFirestore(firebaseApp)
 
 const app = createApp(App)
 

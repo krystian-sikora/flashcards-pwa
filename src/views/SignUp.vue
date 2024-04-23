@@ -55,7 +55,6 @@ function signUp() {
         return
     }
 
-
     createUserWithEmailAndPassword(auth, email.value, password.value)
         .then((userCredential) => {
             // Signed up 

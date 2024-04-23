@@ -1,48 +1,15 @@
+<!-- eslint-disable no-unused-vars -->
 <script setup>
+import { collection, doc } from 'firebase/firestore';
 import { ref } from 'vue';
+import { useFirestore, useCurrentUser, useDocument, useCollection } from 'vuefire'
 
-const flashcard = ref({
-    0: {
-        question: "Myszka",
-        answer: 'Mouse'
-    },
-    1: {
-        question: "Klawiatura",
-        answer: 'Keyboard'
-    },
-    2: {
-        question: "Biurko",
-        answer: 'Desk'
-    },
-    3: {
-        question: "Telefon",
-        answer: 'Phone'
-    },
-    4: {
-        question: "Lampa",
-        answer: 'Lamp'
-    },
-    5: {
-        question: "Ściana",
-        answer: 'Wall'
-    },
-    6: {
-        question: "Tapeta",
-        answer: 'Wallpaper'
-    },
-    7: {
-        question: "Dach",
-        answer: 'Roof'
-    },
-    8: {
-        question: "Buty",
-        answer: 'Shoes'
-    },
-    9: {
-        question: "Dywan",
-        answer: 'Carpet'
-    }
-})
+const auth = useCurrentUser()
+const db = useFirestore()
+const uid = useDocument(doc(db, 'users', auth.value.uid))
+console.log(uid)
+const sets = useCollection(collection(db, 'users', auth.value.uid, 'flashcard-sets'))
+console.log(sets.value)
 
 const i = ref(0)
 
@@ -52,15 +19,12 @@ function nextFlashcard() {
 
 </script>
 
-
-
 <template>
     <div class="study">
-        <div v-if="flashcard">
-            <h1 id="flashcard-label1" > {{ flashcard[i].question }} </h1>
-            <h2 id="flashcard-label2" > {{ flashcard[i].answer }} </h2>
+        <div v-if="sets[0]">
+            <h1 id="flashcard-label1" > {{ sets[0].questions[0] }} </h1>
+            <h2 id="flashcard-label2" > {{ sets[0].questions[0] }} </h2>
         </div> 
-        
             <div class="button-container2">
                 <button @click="nextFlashcard()" type="button" class="btn btn-success difficulty">Easy</button>
                 <button @click="nextFlashcard()" type="button" class="btn btn-warning difficulty">Medium</button>

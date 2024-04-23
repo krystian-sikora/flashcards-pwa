@@ -3,6 +3,7 @@ import HomeView from "../views/HomeView.vue";
 import { getCurrentUser } from "vuefire";
 import MenuView from "@/views/MenuView.vue";
 
+
 const routes = [
   {
     path: '/',
@@ -28,7 +29,29 @@ const routes = [
     path: '/study',
     name: 'study',
     component: () => import('../views/StudyView.vue')
-  }
+  },
+  {
+    path: '/newset',
+    name: 'newset',
+    component: () => import('../views/NewSet.vue')
+  },
+  {
+    path: '/setslibrary',
+    name: 'setslibrary',
+    component: () => import('../views/SetsLibrary.vue')
+  },
+  {
+    path: '/setview',
+    name: 'setview',
+    component: () => import('../views/SetView.vue')
+  },
+  {
+    path: '/addflashcard',
+    name: 'addflashcard',
+    component: () => import('../views/AddFlashcard.vue')
+  },
+
+
 ]
 
 const router = createRouter({

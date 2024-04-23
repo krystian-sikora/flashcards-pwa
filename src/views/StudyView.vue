@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue';
+import IconBackArrow from '@/icons/IconBackArrow.vue';
 
 const flashcard = ref({
     0: {
@@ -55,6 +56,12 @@ function nextFlashcard() {
 
 
 <template>
+      <nav class="navbar lato-light">
+          <a class="nav-link back" href="#"> 
+            <IconBackArrow class="IconBackArrow"/> back
+          </a>
+          <div class="col title">Set_name</div>
+    </nav>
     <div class="study">
         <div v-if="flashcard">
             <h1> {{ flashcard[i].question }} </h1>

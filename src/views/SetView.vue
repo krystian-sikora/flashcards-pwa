@@ -1,4 +1,15 @@
+<script setup>
+import IconBackArrow from '@/icons/IconBackArrow.vue';
+
+</script>
+
 <template>
+     <nav class="navbar lato-light">
+          <a class="nav-link back" href="#"> 
+            <IconBackArrow class="IconBackArrow"/> back
+          </a>
+          <div class="col title">Set_name</div>
+    </nav>
     <div class="container">
         
         <div class="container-mt-12">

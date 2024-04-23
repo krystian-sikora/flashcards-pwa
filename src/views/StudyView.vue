@@ -57,8 +57,8 @@ function nextFlashcard() {
 <template>
     <div class="study">
         <div v-if="flashcard">
-            <h1> {{ flashcard[i].question }} </h1>
-            <h2> {{ flashcard[i].answer }} </h2>
+            <h1 id="flashcard-label1" > {{ flashcard[i].question }} </h1>
+            <h2 id="flashcard-label2" > {{ flashcard[i].answer }} </h2>
         </div> 
         
             <div class="button-container2">
@@ -75,7 +75,7 @@ function nextFlashcard() {
 
         height: 45px;
         font-size: 1em;
-        margin-top: 100px;
+        margin-top: 60px;
         font-family: 'Lato';
         margin-left: auto;
         margin-right: auto; 
@@ -83,8 +83,42 @@ function nextFlashcard() {
     }
 
     .difficulty {
-            margin-right: 10px;
-            margin-left: 10px;
+            margin-right: 5px;
+            margin-left: 5px;
+            /* margin-left: auto; */
+            /* margin-right: auto;  */
+            width: 30%;
+            max-width: 126px;
+            color: white;
+    }
+
+    #flashcard-label1{
+
+        background-color: #969FAA;
+        padding: 40px;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto; 
+        border-radius: 20px;
+        margin-bottom: 30px;
+        font-family: 'Lato';
+        font-size: 40px;
+        color: white;
+
+    }
+
+    #flashcard-label2{
+
+        background-color: #969FAA;
+        padding: 40px;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 20px;
+        font-family: 'Lato';
+        font-size: 40px;
+        color: white;
+
     }
 
 </style>

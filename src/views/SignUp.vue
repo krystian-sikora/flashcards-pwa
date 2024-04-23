@@ -78,7 +78,7 @@ function signUp() {
         <h1 class="logo">
             Flashcards
         </h1>
-        <h2>
+        <h2 class="large">
             Sign Up
         </h2>
         

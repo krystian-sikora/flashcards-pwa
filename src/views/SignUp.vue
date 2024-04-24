@@ -75,24 +75,41 @@ function signUp() {
     <div class="container">
         <h1 class="logo">Flashcards</h1>
         <h2 class="lato-light primary-text">Sign Up</h2>
-        <h1 v-if="errorCode">
+        <!-- <h1 v-if="errorCode" style="color: red;">
             <p>todo: add error handling instead of below</p>
             {{ errorCode }}
-        </h1>
+        </h1> -->
         <div class="container-mt-12">
             <input type="email" 
                 class="form-control input" 
                 aria-describedby="emailHelp" 
                 placeholder="Email"
-                v-model="email">
+                v-model="email"
+                :style="errorCode === 'auth/invalid-email' ? 'border-color: red;' : '' ||
+                errorCode === 'auth/email-already-in-use' ? 'border-color: red;' : ''"
+                >
+                <h1 v-if="errorCode === 'auth/invalid-email'" style="color: red;">
+                    <p>Invalid e-mail</p>
+                </h1>
+                <h1 v-if="errorCode === 'auth/email-already-in-use'" style="color: red;">
+                    <p>E-mail already in use</p>
+                </h1>
             <input type="password" 
                 class="form-control input" 
                 placeholder="Password"
-                v-model="password">
+                v-model="password"
+                :style="errorCode === 'auth/weak-password' ? 'border-color: red;' : ''">
+                <h1 v-if="errorCode === 'auth/weak-password'" style="color: red;">
+                    <p>Weak passowrd</p>
+                </h1>
             <input type="password" 
                 class="form-control input" 
                 placeholder="Repeat password"
-                v-model="repeatedPassword">
+                v-model="repeatedPassword"
+                :style="errorCode === 'auth/passwords-dont-match' ? 'border-color: red;' : ''">
+                <h1 v-if="errorCode === 'auth/passwords-dont-match'" style="color: red;">
+                    <p>Passwords don't match</p>
+                </h1>
             <button type="button" class="btn btn-secondary btn-first" @click="signUp()">
                 Sign Up
             </button>

@@ -73,23 +73,35 @@ onMounted(() => {
 <template>
     <div class="container">
         <h1 class="logo">Flashcards</h1>
-        <h1 v-if="errorCode" style="color: red;">
-            <p>todo: add error handling instead of below</p>
-            {{ errorCode }}
-        </h1>
         <h2 class="lato-light primary-text">Sign in</h2>
+        <h1 v-if="errorCode === 'auth/too-many-requests'" style="color: red;">
+                    <p>Too many requests, please wait...</p>
+                </h1>
         <div class="container-mt-12">
             <input type="email" 
                 class="form-control input" 
                 id="exampleInputEmail1" 
                 aria-describedby="emailHelp" 
                 placeholder="Email"
-                v-model="email">
+                v-model="email"
+                :style="errorCode === 'auth/invalid-email' ? 'border-color: red;' : ''">
+                <h1 v-if="errorCode === 'auth/invalid-email'" style="color: red;">
+                    <p>Invalid e-mail</p>
+                </h1>
             <input type="password" 
                 class="form-control input" 
                 id="exampleInputPassword1" 
                 placeholder="Password"
-                v-model="password">
+                v-model="password"
+                :style="errorCode === 'auth/invalid-credential' ? 'border-color: red;' : '' || 
+                errorCode === 'auth/missing-password' ? 'border-color: red;' : ''"
+                >
+                <h1 v-if="errorCode === 'auth/invalid-credential'" style="color: red;">
+                    <p>Invalid passowrd</p>
+                </h1>
+                <h1 v-if="errorCode === 'auth/missing-password'" style="color: red;">
+                    <p>Missing passowrd</p>
+                </h1>
             <button type="button" class="btn btn-secondary btn-first" @click="signin()">
                 Sign In
             </button>
@@ -105,3 +117,11 @@ onMounted(() => {
         </div>
     </div>
 </template>
+
+<style>
+    p{
+        font-family: 'Lato';
+        font-size: 10px;
+        color: red;
+    }
+</style>

@@ -17,10 +17,14 @@ const router = useRouter()
     </nav>
     <div class="container">
         <div class="container-mt-12">
-            <h1 class="lato-light primary-text">Choose your set</h1>
-            <button class="btn btn-secondary btn-first" v-for="set in setsStore.sets" :key="set.id">
-                {{ set.id }}
-            </button>
+            <div class="rectangle">
+                <h6 class="sets-set"> &#9634; set 1</h6>
+                
+                <button type="button" class="btn btn-secondary btn-first study-button">Study</button>
+                <p class="set-name" v-for="set in setsStore.sets" :key="set.id"> {{ set.id }}</p>
+                
+            </div>
+         
             <button type="button" class="btn btn-secondary btn-first bottom">Create new set</button>
         </div>
     </div>
@@ -33,6 +37,38 @@ const router = useRouter()
     bottom: 20px;
     right: 20px;
     left: 20px;
+}
+
+.rectangle {
+  height: 120px;
+  width: auto;
+  background-color: #b1b1b1;
+  margin: auto;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+
+.sets-set {
+    color: white;
+    text-align: left;
+    margin-left: 8px;
+}
+
+.study-button {
+    width: 100px;
+    margin-left: 180px;
+    margin-top: 10px;
+}
+
+.sets-lastsession {
+    text-align: right;
+    margin-right: 8px;
+    color: white;
+}
+
+.set-name {
+    text-align: left;
+    font-size: xx-large;
 }
 
 </style>

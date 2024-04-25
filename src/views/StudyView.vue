@@ -7,8 +7,6 @@ import { useFirestore, useCurrentUser, useDocument, useCollection } from 'vuefir
 
 const auth = useCurrentUser()
 const db = useFirestore()
-const uid = useDocument(doc(db, 'users', auth.value.uid))
-console.log(uid)
 const sets = useCollection(collection(db, 'users', auth.value.uid, 'flashcard-sets'))
 console.log(sets.value)
 

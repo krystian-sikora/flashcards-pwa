@@ -1,15 +1,32 @@
+<script setup>
+import { useRouter } from 'vue-router'
+import { useSetsStore } from '@/store/flashcards'
+import { collection } from 'firebase/firestore';
+import { useFirestore, useCurrentUser, useCollection } from 'vuefire'
+
+const router = useRouter()
+const setsStore = useSetsStore()
+
+const auth = useCurrentUser()
+const db = useFirestore()
+
+setsStore.addSnapshot(useCollection(collection(db, 'users', auth.value.uid, 'flashcard-sets')))
+
+</script>
+
 <template>
     <div class="container">
-    <div class="container-mt-12">
-      <h1 class="logo">Flashcards</h1>
-      
-        <button type="button" class="btn btn-secondary btn-first">Create new set</button>
-        <button type="button" class="btn btn-secondary btn-first">Sets library</button>
-        <button type="button" class="btn btn-secondary btn-first">Previous session</button>
+      <div class="container-mt-12">
+        <h1 class="logo">Flashcards</h1>
+          <button type="button" class="btn btn-secondary btn-first" 
+            @click="router.push({name: 'newset'})">Create new set</button>
+          <button type="button" class="btn btn-secondary btn-first" 
+            @click="router.push({name: 'library', params: {sets: 'set1xd'}})">Sets library</button>
+          <button type="button" class="btn btn-secondary btn-first" 
+            @click="router.push({name: 'study'})">Previous session</button>
+      </div>
 
 
-
-    </div>
     </div>
   </template>
   

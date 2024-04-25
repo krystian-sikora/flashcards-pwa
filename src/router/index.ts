@@ -40,23 +40,28 @@ const routes = [
     component: () => import('../views/StudyView.vue')
   },
   {
-    path: '/newset',
+    path: '/sets/new',
     name: 'newset',
     component: () => import('../views/NewSet.vue')
   },
   {
     path: '/library',
     name: 'library',
-    component: () => import('../views/SetsLibrary.vue')
+    component: () => import('../views/SetsLibrary.vue'),
+    props: {
+      
+    }
   },
   {
-    path: '/setview',
+    path: '/sets/:name',
     name: 'setview',
+    props: true,
     component: () => import('../views/SetView.vue')
   },
   {
-    path: '/addflashcard',
+    path: '/sets/new/:name',
     name: 'addflashcard',
+    props: true,
     component: () => import('../views/AddFlashcard.vue')
   },
 

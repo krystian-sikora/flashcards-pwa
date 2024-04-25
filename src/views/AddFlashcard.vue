@@ -1,16 +1,17 @@
-<!-- eslint-disable no-unused-vars -->
 <script setup>
 import IconBackArrow from '@/icons/IconBackArrow.vue';
 import { ref, defineProps } from 'vue'
-import { useSetsStore } from '@/store/flashcards'
-import { useCurrentUser, useFirestore } from 'vuefire'
-import { setDoc, doc } from 'firebase/firestore'
+import { useCurrentUser, useFirestore, useCollection } from 'vuefire'
+import { setDoc, doc, collection } from 'firebase/firestore'
 import { useRouter } from 'vue-router'
+import { useSetsStore } from '@/store/flashcards'
 
 // eslint-disable-next-line no-unused-vars
 const props = defineProps({
   name: String
 })
+
+const sets = useSetsStore()
 
 const auth = useCurrentUser()
 const db = useFirestore()
@@ -34,6 +35,7 @@ function save() {
         questions: questions.value,
         answers: answers.value
     })
+    sets.addSnapshot(useCollection(collection(db, 'users', auth.value.uid, 'flashcard-sets')))
     router.push({ name: 'library' })
 }
 

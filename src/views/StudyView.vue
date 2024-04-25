@@ -3,7 +3,7 @@
 import { collection, doc } from 'firebase/firestore';
 import { ref } from 'vue';
 import IconBackArrow from '@/icons/IconBackArrow.vue';
-import { useFirestore, useCurrentUser, useDocument, useCollection } from 'vuefire'
+import { useFirestore, useCurrentUser, useCollection } from 'vuefire'
 
 const auth = useCurrentUser()
 const db = useFirestore()

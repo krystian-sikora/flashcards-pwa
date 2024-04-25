@@ -2,12 +2,11 @@
 <script setup>
 import { collection, doc } from 'firebase/firestore';
 import { ref } from 'vue';
-import { useFirestore, useCurrentUser, useDocument, useCollection } from 'vuefire'
+import IconBackArrow from '@/icons/IconBackArrow.vue';
+import { useFirestore, useCurrentUser, useCollection } from 'vuefire'
 
 const auth = useCurrentUser()
 const db = useFirestore()
-const uid = useDocument(doc(db, 'users', auth.value.uid))
-console.log(uid)
 const sets = useCollection(collection(db, 'users', auth.value.uid, 'flashcard-sets'))
 console.log(sets.value)
 
@@ -20,6 +19,12 @@ function nextFlashcard() {
 </script>
 
 <template>
+      <nav class="navbar lato-light">
+          <a class="nav-link back" href="#"> 
+            <IconBackArrow class="IconBackArrow"/> back
+          </a>
+          <div class="col title">Set_name</div>
+    </nav>
     <div class="study">
         <div v-if="sets[0]">
             <h1 id="flashcard-label1" > {{ sets[0].questions[0] }} </h1>

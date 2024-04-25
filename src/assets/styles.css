@@ -90,3 +90,21 @@
     top: 13px;
     margin: 0 auto 0 auto;
 }
+
+.IconBackArrow {
+    width: 10px;
+    margin-bottom: 2px;
+}
+
+.back {
+    margin-left: 10px;
+}
+
+.navbar {
+    border-bottom: solid 0.1cap;
+    border-bottom-style: inset;
+}
+
+.title {
+    margin-right: 55px;
+}

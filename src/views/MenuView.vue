@@ -25,11 +25,8 @@ setsStore.addSnapshot(useCollection(collection(db, 'users', auth.value.uid, 'fla
           <button type="button" class="btn btn-secondary btn-first" 
             @click="router.push({name: 'study'})">Previous session</button>
       </div>
-
-
     </div>
   </template>
-  
 <style>
 
 .flashcard-button {

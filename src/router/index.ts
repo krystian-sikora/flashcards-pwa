@@ -35,7 +35,7 @@ const routes = [
     component: MenuView,
   },
   {
-    path: '/study',
+    path: '/sets/:name/study',
     name: 'study',
     component: () => import('../views/StudyView.vue')
   },

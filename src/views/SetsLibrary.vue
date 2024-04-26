@@ -28,33 +28,19 @@ const router = useRouter()
                 </div>
                 <div class="row align-items-center">
                     <div class="col">
-                        <p class="set-name nav-link back" href="#" @click="router.push({name: 'setview' , params: {name: set.id}})" v-for="set in setsStore.sets" :key="set.id"> {{ set.id }}</p>
+                        <p class="set-name nav-link back" href="#" @click="router.push({name: 'setview' , params: {name: set.id}})"> {{ set.id }}</p>
                     </div>
                     <div class="col">
                         <button type="button" class="btn btn-secondary btn-first study-button">Study</button>
                     </div> 
                 </div>
-                
-                
-                
-
-                
-                
             </div>
-         
             <button type="button" class="btn btn-secondary btn-first bottom" @click="router.push({name: 'newset'})">Create new set</button>
         </div>
     </div>
 </template>
 
 <style>
-
-.bottom {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    left: 20px;
-}
 
 .rectangle {
   height: 120px;

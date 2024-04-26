@@ -26,6 +26,8 @@ function addFlashcard() {
     answers.value.push(answer.value)
     question.value = ''
     answer.value = ''
+    console.log(questions.value)
+    console.log(answers.value)
 }
 
 function save() {

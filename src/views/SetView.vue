@@ -1,8 +1,10 @@
 <script setup>
 import IconBackArrow from '@/icons/IconBackArrow.vue';
 import defineProps from 'vue'
-
-
+import { useSetsStore } from '@/store/flashcards'
+import { useRouter } from 'vue-router'
+const setsStore = useSetsStore()
+const router = useRouter()
 // eslint-disable-next-line no-unused-vars
 const props = defineProps({
   name: String
@@ -11,10 +13,10 @@ const props = defineProps({
 
 <template>
      <nav class="navbar lato-light">
-          <a class="nav-link back" href="#"> 
+          <a class="nav-link back" href="#" @click="router.push({name: 'library'})"> 
             <IconBackArrow class="IconBackArrow"/> back
           </a>
-          <div class="col title">Set_name</div>
+          <div class="col title" v-for="set in setsStore.sets" :key="set.id">{{ set.id }}</div>
     </nav>
     <div class="container">
         <div class="container-mt-12">
@@ -53,7 +55,7 @@ const props = defineProps({
     .rectangle {
         height: 120px;
         width: auto;
-        background-color: #b1b1b1;
+        background-color: #cccccc;
         margin: auto;
         margin-top: 10px;
         border-radius: 10px;

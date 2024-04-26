@@ -17,15 +17,32 @@ const router = useRouter()
     </nav>
     <div class="container">
         <div class="container-mt-12">
-            <div class="rectangle">
-                <h6 class="sets-set"> &#9634; set 1</h6>
+            <div class="rectangle" v-for="set in setsStore.sets" :key="set.id">
+                <div class="row align-items-center">
+                    <div class="col-3 set">
+                        &#9634; set 1
+                    </div>
+                    <div class="col-8 last-session-text" >
+                    Last session one week(s) ago
+                    </div> 
+                </div>
+                <div class="row align-items-center">
+                    <div class="col">
+                        <p class="set-name nav-link back" href="#" @click="router.push({name: 'setview' , params: {name: set.id}})" v-for="set in setsStore.sets" :key="set.id"> {{ set.id }}</p>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-secondary btn-first study-button">Study</button>
+                    </div> 
+                </div>
                 
-                <button type="button" class="btn btn-secondary btn-first study-button">Study</button>
-                <p class="set-name" v-for="set in setsStore.sets" :key="set.id"> {{ set.id }}</p>
+                
+                
+
+                
                 
             </div>
          
-            <button type="button" class="btn btn-secondary btn-first bottom">Create new set</button>
+            <button type="button" class="btn btn-secondary btn-first bottom" @click="router.push({name: 'newset'})">Create new set</button>
         </div>
     </div>
 </template>
@@ -42,7 +59,7 @@ const router = useRouter()
 .rectangle {
   height: 120px;
   width: auto;
-  background-color: #b1b1b1;
+  background-color: #cccccc;
   margin: auto;
   margin-top: 10px;
   border-radius: 10px;
@@ -54,21 +71,32 @@ const router = useRouter()
     margin-left: 8px;
 }
 
-.study-button {
-    width: 100px;
-    margin-left: 180px;
-    margin-top: 10px;
-}
-
 .sets-lastsession {
-    text-align: right;
-    margin-right: 8px;
+    text-align: right;  
     color: white;
 }
 
 .set-name {
     text-align: left;
     font-size: xx-large;
+    margin-left: 8px;
+    margin-bottom: 20px;
 }
 
+.study-button {
+    width: 100px;
+    margin-bottom: 20px;
+}
+
+.set {
+    text-align: left;
+    margin-left: 8px;
+    margin-bottom: 20px;
+}
+
+.last-session-text {
+    font-size: small;
+    text-align: right;
+    margin-bottom: 20px;
+}
 </style>

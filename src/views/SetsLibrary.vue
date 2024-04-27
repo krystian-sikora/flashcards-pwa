@@ -9,7 +9,7 @@ const router = useRouter()
 </script>
 
 <template>
-    <nav class="navbar lato-light">
+    <nav class="navbar lato-light top-container">
           <a class="nav-link back" href="#" @click="router.push({name: 'menu'})"> 
             <IconBackArrow class="IconBackArrow"/> back
           </a>
@@ -35,12 +35,14 @@ const router = useRouter()
                     </div> 
                 </div>
             </div>
-            <button type="button" class="btn btn-secondary btn-first bottom" @click="router.push({name: 'newset'})">Create new set</button>
         </div>
+    </div>
+    <div class="bottom-container">
+        <button type="button" class="btn btn-secondary btn-first bottom" @click="router.push({name: 'newset'})">Create new set</button>
     </div>
 </template>
 
-<style>
+<style scoped>
 
 .rectangle {
   height: 120px;

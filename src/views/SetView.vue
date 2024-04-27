@@ -19,7 +19,7 @@ console.log(setsStore.sets)
 </script>
 
 <template>
-     <nav class="navbar lato-light">
+     <nav class="navbar lato-light top-container">
           <a class="nav-link back" href="#" @click="router.push({name: 'library'})"> 
             <IconBackArrow class="IconBackArrow"/> back
           </a>
@@ -32,25 +32,14 @@ console.log(setsStore.sets)
                 <h1 class="flashcard-text">{{ currentSet['questions'][num - 1] }}</h1>
                 <h5 class="flashcard-text">{{ currentSet['answers'][num - 1] }}</h5>
             </div>
-            
-
-
-            <button type="button" class="btn btn-secondary btn-first bottom2">Study</button>
-            <button type="button" class="btn btn-secondary btn-first bottom">Add new flashcard</button>
-
         </div>
     </div>
-
+    <div class="bottom-container">
+        <button type="button" class="btn btn-secondary btn-first" style="margin-bottom: 10px;">Study</button>
+        <button type="button" class="btn btn-secondary btn-first">Add new flashcard</button>
+    </div>
 </template>
 <style>
-
-.bottom2 {
-    position: sticky;
-    bottom: 70px;
-    right: 20px;
-    left: 20px;
-    
-}
 
 .rectangle {
     height: 120px;

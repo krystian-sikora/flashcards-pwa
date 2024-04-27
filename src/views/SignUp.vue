@@ -8,6 +8,7 @@ import {
 import { onMounted, ref } from 'vue'
 import { useFirebaseAuth } from 'vuefire'
 import IconGoogle from '@/icons/IconGoogle.vue'
+import { useRouter } from 'vue-router'
 
 export const googleAuthProvider = new GoogleAuthProvider()
 </script>
@@ -20,6 +21,7 @@ const repeatedPassword = ref('')
 const errorCode = ref('')
 
 const auth = useFirebaseAuth() // only exists on client side
+const router = useRouter()
 
 // display errors if any
 const error = ref(null)
@@ -101,7 +103,19 @@ function signUp() {
                 <IconGoogle class="icon-google"/>
                 Sign Up with Google
             </button>
-            <h2 style="font-size: 10px;">Already have an account?</h2>
+            <h2 class="link" @click="router.push({name: 'signin'})">Already have an account?</h2>
         </div>
     </div>
 </template>
+
+<style scoped>
+
+.link {
+    font-size: 10px;
+}
+
+.link:hover {
+    cursor: pointer;
+}
+
+</style>

@@ -13,8 +13,6 @@ const props = defineProps({
 
 const sets = useSetsStore()
 
-navigator.serviceWorker.register('/sw.js')
-
 const auth = useCurrentUser()
 const db = useFirestore()
 const router = useRouter()

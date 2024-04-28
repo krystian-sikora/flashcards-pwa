@@ -29,10 +29,10 @@ function redirectToHome() {
 }
 
 function signinRedirect() {
-  signInWithRedirect(auth, googleAuthProvider).catch((reason) => {
-    console.error('Failed signinRedirect', reason)
-    error.value = reason
-  })
+    signInWithRedirect(auth, googleAuthProvider).catch((reason) => {
+        console.error('Failed signinRedirect', reason)
+        error.value = reason
+    })
 }
 
 function signin() {
@@ -100,8 +100,20 @@ onMounted(() => {
                 <IconGoogle class="icon-google"/>
                 Sign In with Google
             </button>
-            <h2 style="font-size: 10px;">Forgot password?</h2>
-            <h2 style="font-size: 10px;">Dont't have an account?</h2>
+            <h2 class="link" @click="router.push({name: 'resetpassword'})">Forgot password?</h2>
+            <h2 class="link" @click="router.push({name: 'signup'})">Dont't have an account?</h2>
         </div>
     </div>
 </template>
+
+<style scoped>
+
+.link {
+    font-size: 10px;
+}
+
+.link:hover {
+    cursor: pointer;
+}
+
+</style>

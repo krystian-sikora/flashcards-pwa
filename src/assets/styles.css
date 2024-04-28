@@ -28,7 +28,7 @@
 }
 
 .container > * {
-    max-width: 320px;
+    max-width: 400px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -107,4 +107,19 @@
 
 .title {
     margin-right: 55px;
+}
+
+.bottom-container {
+    padding: 10px 0;
+    position: sticky;
+    bottom: 0;
+    right: 20px;
+    left: 20px;
+    background-color: white;
+}
+
+.top-container {
+    position: sticky; 
+    top: 0px; 
+    background-color: white;
 }

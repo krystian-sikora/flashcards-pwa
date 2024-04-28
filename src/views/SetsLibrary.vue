@@ -9,7 +9,7 @@ const router = useRouter()
 </script>
 
 <template>
-    <nav class="navbar lato-light">
+    <nav class="navbar lato-light top-container">
           <a class="nav-link back" href="#" @click="router.push({name: 'menu'})"> 
             <IconBackArrow class="IconBackArrow"/> back
           </a>
@@ -28,33 +28,21 @@ const router = useRouter()
                 </div>
                 <div class="row align-items-center">
                     <div class="col">
-                        <p class="set-name nav-link back" href="#" @click="router.push({name: 'setview' , params: {name: set.id}})" v-for="set in setsStore.sets" :key="set.id"> {{ set.id }}</p>
+                        <p class="set-name nav-link back" href="#" @click="router.push({name: 'setview' , params: {name: set.id}})"> {{ set.id }}</p>
                     </div>
                     <div class="col">
-                        <button type="button" class="btn btn-secondary btn-first study-button">Study</button>
+                        <button type="button" class="btn btn-secondary btn-first study-button" @click="router.push({name: 'study', params: {name: set.id}})">Study</button>
                     </div> 
                 </div>
-                
-                
-                
-
-                
-                
             </div>
-         
-            <button type="button" class="btn btn-secondary btn-first bottom" @click="router.push({name: 'newset'})">Create new set</button>
         </div>
+    </div>
+    <div class="bottom-container">
+        <button type="button" class="btn btn-secondary btn-first bottom" @click="router.push({name: 'newset'})">Create new set</button>
     </div>
 </template>
 
-<style>
-
-.bottom {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    left: 20px;
-}
+<style scoped>
 
 .rectangle {
   height: 120px;

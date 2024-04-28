@@ -1,9 +1,10 @@
 <!-- eslint-disable no-unused-vars -->
 <script setup>
-import { collection, doc } from 'firebase/firestore';
+import { collection } from 'firebase/firestore';
 import { ref } from 'vue';
 import IconBackArrow from '@/icons/IconBackArrow.vue';
 import { useFirestore, useCurrentUser, useCollection } from 'vuefire'
+
 
 const auth = useCurrentUser()
 const db = useFirestore()
@@ -15,6 +16,17 @@ const i = ref(0)
 function nextFlashcard() {
     i.value = i.value + 1
 }
+function vibrate() {
+    if (window.navigator.vibrate){
+        window.navigator.vibrate(100)
+    }
+}
+
+
+
+const easySound =  new Audio(require('@/sounds/easy.mp3'))
+const mediumSound =  new Audio(require('@/sounds/medium.mp3'))
+const hardSound = new Audio(require('@/sounds/hard.mp3'))
 
 </script>
 
@@ -31,9 +43,9 @@ function nextFlashcard() {
             <h2 id="flashcard-label2" > {{ sets[0].questions[0] }} </h2>
         </div> 
             <div class="button-container2">
-                <button @click="nextFlashcard()" type="button" class="btn btn-success difficulty">Easy</button>
-                <button @click="nextFlashcard()" type="button" class="btn btn-warning difficulty">Medium</button>
-                <button @click="nextFlashcard()" type="button" class="btn btn-danger difficulty">Hard</button>
+                <button @click="nextFlashcard(), easySound.play(), vibrate()" type="button" class="btn btn-success difficulty">Easy</button>
+                <button @click="nextFlashcard(), mediumSound.play(), vibrate()" type="button" class="btn btn-warning difficulty">Medium</button>
+                <button @click="nextFlashcard(), hardSound.play(), vibrate()" type="button" class="btn btn-danger difficulty">Hard</button>
             </div>
     </div>
 </template>
@@ -66,8 +78,8 @@ function nextFlashcard() {
         background-color: #969FAA;
         padding: 40px;
         max-width: 400px;
-        margin-left: auto;
-        margin-right: auto; 
+        margin-left: 10px;
+        margin-right: 10px; 
         border-radius: 20px;
         margin-bottom: 30px;
         font-family: 'Lato';
@@ -81,8 +93,8 @@ function nextFlashcard() {
         background-color: #969FAA;
         padding: 40px;
         max-width: 400px;
-        margin-left: auto;
-        margin-right: auto;
+        margin-left: 10px;
+        margin-right: 10px;
         border-radius: 20px;
         font-family: 'Lato';
         font-size: 40px;

@@ -27,14 +27,22 @@ function addFlashcard() {
     answers.value.push(answer.value)
     question.value = ''
     answer.value = ''
+    console.log(questions.value)
+    console.log(answers.value)
 }
 
 function save() {
-    console.log(props.name)
-    setDoc(doc(db, 'users', auth.value.uid, 'flashcard-sets', props.name), {
-        questions: questions.value,
-        answers: answers.value
-    })
+    if (sets.getSet(props.name) === undefined) {
+        setDoc(doc(db, 'users', auth.value.uid, 'flashcard-sets', props.name), {
+            questions: questions.value,
+            answers: answers.value
+        })   
+    } else {
+        setDoc(doc(db, 'users', auth.value.uid, 'flashcard-sets', props.name), {
+            questions: sets.getSet(props.name).questions.concat(questions.value),
+            answers: sets.getSet(props.name).answers.concat(answers.value)
+        })
+    }
     sets.addSnapshot(useCollection(collection(db, 'users', auth.value.uid, 'flashcard-sets')))
     router.push({ name: 'library' })
 }

@@ -40,7 +40,6 @@ function logOut() {
     </div>
   </div>
 </template>
-  
 <style>
 
 .icon-logout {

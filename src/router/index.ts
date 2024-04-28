@@ -35,8 +35,9 @@ const routes = [
     component: MenuView,
   },
   {
-    path: '/study',
+    path: '/sets/:name/study',
     name: 'study',
+    props: true,
     component: () => import('../views/StudyView.vue')
   },
   {
@@ -47,10 +48,7 @@ const routes = [
   {
     path: '/library',
     name: 'library',
-    component: () => import('../views/SetsLibrary.vue'),
-    props: {
-      
-    }
+    component: () => import('../views/SetsLibrary.vue')
   },
   {
     path: '/sets/:name',
@@ -64,6 +62,14 @@ const routes = [
     props: true,
     component: () => import('../views/AddFlashcard.vue')
   },
+  {
+    path: '/resetpassword',
+    name: 'resetpassword',
+    component: () => import('../views/PasswordResetView.vue'),
+    meta: {
+      requiresAuth: false
+    }
+  }
 
 
 ]
@@ -78,13 +84,19 @@ export default router;
 router.beforeEach(async (to) => {
   const currentUser = await getCurrentUser();
   
-  if (to.meta.requiresAuth !== false) {
-    if (!currentUser) {
-      return {
-        path: "/signup",
-        name: "signup",
-        component: () => import("../views/SignUp.vue"),
-      };
-    } 
+  if (to.meta.requiresAuth !== false && !currentUser) {
+    return {
+      path: "/signup",
+      name: "signup",
+      component: () => import("../views/SignUp.vue"),
+    };
   }
+  if (currentUser && to.meta.requiresAuth === false) {
+    return {
+      path: "/menu",
+      name: "menu",
+      component: MenuView,
+    };
+  }
+
 });

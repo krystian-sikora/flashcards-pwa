@@ -9,7 +9,7 @@ const router = useRouter()
 </script>
 
 <template>
-    <nav class="navbar lato-light">
+    <nav class="navbar lato-light top-container">
           <a class="nav-link back" href="#" @click="router.push({name: 'menu'})"> 
             <IconBackArrow class="IconBackArrow"/> back
           </a>
@@ -17,22 +17,74 @@ const router = useRouter()
     </nav>
     <div class="container">
         <div class="container-mt-12">
-            <h1 class="lato-light primary-text">Choose your set</h1>
-            <button class="btn btn-secondary btn-first" v-for="set in setsStore.sets" :key="set.id">
-                {{ set.id }}
-            </button>
-            <button type="button" class="btn btn-secondary btn-first bottom">Create new set</button>
+            <div class="rectangle" v-for="set in setsStore.sets" :key="set.id">
+                <div class="row align-items-center">
+                    <div class="col-3 set">
+                        &#9634; set 1
+                    </div>
+                    <div class="col-8 last-session-text" >
+                    Last session one week(s) ago
+                    </div> 
+                </div>
+                <div class="row align-items-center">
+                    <div class="col">
+                        <p class="set-name nav-link back" href="#" @click="router.push({name: 'setview' , params: {name: set.id}})"> {{ set.id }}</p>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-secondary btn-first study-button" @click="router.push({name: 'study', params: {name: set.id}})">Study</button>
+                    </div> 
+                </div>
+            </div>
         </div>
+    </div>
+    <div class="bottom-container">
+        <button type="button" class="btn btn-secondary btn-first bottom" @click="router.push({name: 'newset'})">Create new set</button>
     </div>
 </template>
 
-<style>
+<style scoped>
 
-.bottom {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    left: 20px;
+.rectangle {
+  height: 120px;
+  width: auto;
+  background-color: #cccccc;
+  margin: auto;
+  margin-top: 10px;
+  border-radius: 10px;
 }
 
+.sets-set {
+    color: white;
+    text-align: left;
+    margin-left: 8px;
+}
+
+.sets-lastsession {
+    text-align: right;  
+    color: white;
+}
+
+.set-name {
+    text-align: left;
+    font-size: xx-large;
+    margin-left: 8px;
+    margin-bottom: 20px;
+}
+
+.study-button {
+    width: 100px;
+    margin-bottom: 20px;
+}
+
+.set {
+    text-align: left;
+    margin-left: 8px;
+    margin-bottom: 20px;
+}
+
+.last-session-text {
+    font-size: small;
+    text-align: right;
+    margin-bottom: 20px;
+}
 </style>

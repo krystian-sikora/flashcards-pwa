@@ -31,7 +31,7 @@ const router = useRouter()
                         <p class="set-name nav-link back" href="#" @click="router.push({name: 'setview' , params: {name: set.id}})"> {{ set.id }}</p>
                     </div>
                     <div class="col">
-                        <button type="button" class="btn btn-secondary btn-first study-button">Study</button>
+                        <button type="button" class="btn btn-secondary btn-first study-button" @click="router.push({name: 'study', params: {name: set.id}})">Study</button>
                     </div> 
                 </div>
             </div>

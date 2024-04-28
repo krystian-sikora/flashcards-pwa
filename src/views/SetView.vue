@@ -36,7 +36,7 @@ console.log(setsStore.sets)
     </div>
     <div class="bottom-container">
         <button type="button" class="btn btn-secondary btn-first" style="margin-bottom: 10px;">Study</button>
-        <button type="button" class="btn btn-secondary btn-first" @click="router.push({name: 'addflashcard', props: {name: name}})">Add new flashcard</button>
+        <button type="button" class="btn btn-secondary btn-first" @click="router.push({name: 'addflashcard', params: {name: name}})">Add new flashcard</button>
     </div>
 </template>
 <style>

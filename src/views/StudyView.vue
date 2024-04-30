@@ -126,6 +126,17 @@ function getRandomWeightedIndex(weights) {
     return weights.length - 1; // Domyślnie zwraca indeks ostatniej kategorii
 }
 
+function vibrate() {
+    if (window.navigator.vibrate){
+        window.navigator.vibrate(100)
+    }
+}
+
+
+const easySound =  new Audio(require('@/sounds/easy.mp3'))
+const mediumSound =  new Audio(require('@/sounds/medium.mp3'))
+const hardSound = new Audio(require('@/sounds/hard.mp3'))
+
 </script>
 
 <template>
@@ -141,9 +152,9 @@ function getRandomWeightedIndex(weights) {
             <h2 id="flashcard-label2" @click="isVisible = true"> {{ isVisible ? nextFlashcard.answer : '?'}} </h2>
         </div> 
         <div class="button-container2">
-            <button @click="setDiff(0)" type="button" class="btn btn-success difficulty">Easy</button>
-            <button @click="setDiff(1)" type="button" class="btn btn-warning difficulty">Medium</button>
-            <button @click="setDiff(2)" type="button" class="btn btn-danger difficulty">Hard</button>
+            <button @click="setDiff(0), easySound.play(), vibrate()" type="button" class="btn btn-success difficulty">Easy</button>
+            <button @click="setDiff(1), mediumSound.play(), vibrate()" type="button" class="btn btn-warning difficulty">Medium</button>
+            <button @click="setDiff(2), hardSound.play(), vibrate()" type="button" class="btn btn-danger difficulty">Hard</button>
         </div>
     </div>
     <div class="container" :style="!noFlashcardsLeft() ? 'display: None' : ''">

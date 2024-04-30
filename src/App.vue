@@ -6,13 +6,13 @@
 </script>
 
 <template>
-  <!-- <nav>
+  <nav>
     <router-link to="/">Home</router-link> |
     <router-link to="/signin">Sing In</router-link> |
     <router-link to="/signup">Sign Up</router-link> |
     <router-link to="/menu">Menu</router-link> |
     <router-link to="/study">Study</router-link>
-  </nav> -->
+  </nav>
   <h1 v-if="user">Signed in as {{ auth.currentUser.email }}</h1>
   <router-view style="padding-top: 100px;"/>
 </template>

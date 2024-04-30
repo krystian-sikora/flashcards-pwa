@@ -269,3 +269,73 @@ const stopTimer = () => {
 }
 
 </style>
+
+<!-- <template>
+    <div>
+      <h1>Quiz Results</h1>
+      <div v-if="questions.length === 0">
+        <p>No questions found.</p>
+      </div>
+      <div v-else>
+        <div v-for="(question, index) in questions" :key="index">
+          <p>{{ question.text }}</p>
+          <button @click="selectDifficulty(index, 'easy')">Easy</button>
+          <button @click="selectDifficulty(index, 'medium')">Medium</button>
+          <button @click="selectDifficulty(index, 'hard')">Hard</button>
+        </div>
+        <button @click="calculatePercentage">Calculate Percentage</button>
+        <div v-if="showResults">
+          <p>{{ percentage }}% of your answers were correct.</p>
+        </div>
+      </div>
+    </div>
+  </template>
+  
+  <script>
+  export default {
+    data() {
+      return {
+        questions: [
+          { text: "Question 1" },
+          { text: "Question 2" },
+          { text: "Question 3" }
+        ],
+        answers: [],
+        showResults: false,
+        percentage: 0
+      };
+    },
+    methods: {
+      selectDifficulty(index, difficulty) {
+        if (difficulty === 'easy') {
+          this.answers[index] = true;
+        } else if (difficulty === 'medium') {
+          this.answers[index] = null; // Skipped
+        } else if (difficulty === 'hard') {
+          this.answers[index] = false;
+        }
+      },
+      calculatePercentage() {
+        let correctCount = 0;
+        for (let i = 0; i < this.questions.length; i++) {
+          if (this.answers[i] === true) {
+            correctCount++;
+          }
+        }
+        const totalAnswered = this.answers.filter(answer => answer !== null).length;
+        this.percentage = (correctCount / totalAnswered) * 100 || 0;
+        this.showResults = true;
+      }
+    }
+  };
+  </script> -->
+
+  <!-- consol loga jakiegos -->
+
+  <!-- algorytm bedzie dzialal tak ze zaleznie od odpowiedzi:
+
+easy - bedzie kolejna fiszke dawal 2 razy rzadziej 
+medium - normalnie
+hard - 2 razy czesciej
+
+ogolnie to bedzie tak ze hard np wrzuca ja w polowie trawajacego ciagu odp -->

@@ -137,4 +137,10 @@ function signUp() {
     cursor: pointer;
 }
 
+p {
+    font-family: 'Lato';
+    font-size: 10px;
+    color: red;
+}
+
 </style>

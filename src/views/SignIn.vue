@@ -100,7 +100,7 @@ onMounted(() => {
                     <p>Invalid passowrd</p>
                 </h1>
                 <h1 v-if="errorCode === 'auth/missing-password'" style="color: red;">
-                    <p>Missing passowrd</p>
+                    <p>Missing password</p>
                 </h1>
             <button type="button" class="btn btn-secondary btn-first" @click="signin()">
                 Sign In
@@ -128,7 +128,7 @@ onMounted(() => {
     cursor: pointer;
 }
 
-p{
+p {
     font-family: 'Lato';
     font-size: 10px;
     color: red;

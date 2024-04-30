@@ -7,6 +7,7 @@ import { computed } from "@vue/reactivity";
 
 const setsStore = useSetsStore()
 const router = useRouter()
+
 // eslint-disable-next-line no-unused-vars
 const props = defineProps({
   name: String
@@ -35,8 +36,10 @@ console.log(setsStore.sets)
         </div>
     </div>
     <div class="bottom-container">
-        <button type="button" class="btn btn-secondary btn-first" style="margin-bottom: 10px;">Study</button>
-        <button type="button" class="btn btn-secondary btn-first" @click="router.push({name: 'addflashcard', params: {name: name}})">Add new flashcard</button>
+        <button type="button" class="btn btn-secondary btn-first" style="margin-bottom: 10px;" 
+        @click="router.push({name: 'study', params: {name: currentSet.id}})">Study</button>
+        <button type="button" class="btn btn-secondary btn-first" 
+        @click="router.push({name: 'addflashcard', params: {name: name}})">Add new flashcard</button>
     </div>
 </template>
 <style>

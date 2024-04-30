@@ -110,8 +110,6 @@
 }
 
 .bottom-container {
-    border-top: solid 0.1cap;
-    border-top-style: inset;
     padding: 10px 0;
     position: sticky;
     bottom: 0;

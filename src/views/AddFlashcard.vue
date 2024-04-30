@@ -23,6 +23,13 @@ const questions = ref([])
 const answers = ref([])
 
 function addFlashcard() {
+    question.value.length === 0 ? qError.value = true : qError.value = false
+    answer.value.length === 0 ? aError.value = true : aError.value = false
+
+    if (qError.value || aError.value) {
+        return
+    }
+
     questions.value.push(question.value)
     answers.value.push(answer.value)
     question.value = ''
@@ -31,7 +38,17 @@ function addFlashcard() {
     console.log(answers.value)
 }
 
+const qError = ref(false)
+const aError = ref(false)
+
 function save() {
+    questions.value.length === 0 ? qError.value = true : qError.value = false
+    answers.value.length === 0 ? aError.value = true : aError.value = false
+    
+    if (qError.value || aError.value) {
+        return
+    }
+
     if (sets.getSet(props.name) === undefined) {
         setDoc(doc(db, 'users', auth.value.uid, 'flashcard-sets', props.name), {
             questions: questions.value,
@@ -64,14 +81,15 @@ function save() {
                 id="exampleFormControlTextarea1" 
                 rows="3"
                 v-model="question"
-                placeholder="Word or phrase">
-         
+                placeholder="Word or phrase"
+                :style="qError === true ? 'border-color: red;' : ''">
             </textarea>
             <textarea class="form-control input" 
                 id="exampleFormControlTextarea1" 
                 rows="3"
                 v-model="answer"
-                placeholder="Explanation">
+                placeholder="Explanation"
+                :style="aError ? 'border-color: red;' : ''">
             </textarea>
             
             <button type="button" class="btn btn-secondary btn-first" @click="addFlashcard()">Add</button>

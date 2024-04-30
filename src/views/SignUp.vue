@@ -29,6 +29,7 @@ function signinRedirect() {
   signInWithRedirect(auth, googleAuthProvider).catch((reason) => {
     console.error('Failed signinRedirect', reason)
     error.value = reason
+    alert(reason)
   })
 }
 

@@ -13,7 +13,9 @@ const user = useCurrentUser()
 const auth = getAuth()
 const db = useFirestore()
 
-setsStore.addSnapshot(useCollection(collection(db, 'users', user.value.uid, 'flashcard-sets')))
+if (setsStore.sets.length === 0) {
+  setsStore.addSnapshot(useCollection(collection(db, 'users', user.value.uid, 'flashcard-sets')))
+}
 
 function logOut() {
   signOut(auth).then(() => {

@@ -17,13 +17,14 @@ const router = useRouter()
     </nav>
     <div class="container">
         <div class="container-mt-12">
-            <div class="rectangle" v-for="set in setsStore.sets" :key="set.id">
+            <div class="rectangle" v-for="(set, index) in setsStore.sets" :key=set.id>
                 <div class="row align-items-center">
                     <div class="col-3 set">
-                        &#9634; set 1
+                        &#9634; set {{ index + 1 }}
+                        
                     </div>
                     <div class="col-8 last-session-text" >
-                    Last session one week(s) ago
+                        Last session one week(s) ago
                     </div> 
                 </div>
                 <div class="row align-items-center">
@@ -86,5 +87,11 @@ const router = useRouter()
     font-size: small;
     text-align: right;
     margin-bottom: 20px;
+}
+
+.bottom {
+    width: 90%;
+    max-width: 400px;
+    margin-top: 10px;
 }
 </style>

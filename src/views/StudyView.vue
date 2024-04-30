@@ -4,6 +4,8 @@ import IconBackArrow from '@/icons/IconBackArrow.vue';
 import { useSetsStore } from '@/store/flashcards'
 import { useRouter } from 'vue-router'
 import { computed } from "@vue/reactivity";
+import { onMounted, onBeforeUnmount } from 'vue';
+
 
 // eslint-disable-next-line no-unused-vars
 const props = defineProps({
@@ -137,6 +139,60 @@ const easySound =  new Audio(require('@/sounds/easy.mp3'))
 const mediumSound =  new Audio(require('@/sounds/medium.mp3'))
 const hardSound = new Audio(require('@/sounds/hard.mp3'))
 
+onMounted(() => {
+  startTimer()
+  console.log(formattedTime.value)
+})
+
+onBeforeUnmount(() => {
+  stopTimer()
+  console.log(formattedTime.value)
+})
+
+
+// const startStudyTime = () => {
+//     startTimer()
+
+// }
+
+// const stopStudyTime = () => {
+//     stopTimer()
+//     console.log(formattedTime.value)
+
+// }
+
+// const showingUnder = () => {
+//   if(stopTimer==true)
+//     return formattedTime.value
+// }
+
+const startTime = ref(null)
+const elapsedTime = ref(0)
+
+
+const formattedTime = computed(() => {
+    const hours = Math.floor(elapsedTime.value / 3600)
+    const minutes = Math.floor((elapsedTime.value % 3600) / 60)
+    const seconds = elapsedTime.value % 60
+    return `${hours}:${minutes}:${seconds}`
+})
+
+const startTimer = () => {
+    startTime.value = new Date()
+    updateElapsedTime()
+};
+
+const updateElapsedTime = () => {
+    setInterval(() => {
+        const now = new Date()
+        elapsedTime.value = Math.floor((now - startTime.value) / 1000)
+    }, 1000)
+}
+
+const stopTimer = () => {
+    clearInterval(updateElapsedTime)
+}
+
 </script>
 
 <template>
@@ -186,7 +242,7 @@ const hardSound = new Audio(require('@/sounds/hard.mp3'))
 }
 
 #flashcard-label1{
-    background-color: #969FAA;
+    background-color: #cccccc;
     padding: 40px;
     max-width: 400px;
     margin-left: auto;
@@ -196,10 +252,11 @@ const hardSound = new Audio(require('@/sounds/hard.mp3'))
     font-family: 'Lato';
     font-size: 40px;
     color: white;
+    margin-top: 60px;
 }
 
 #flashcard-label2{
-    background-color: #969FAA;
+    background-color: #cccccc;
     padding: 40px;
     max-width: 400px;
     margin-left: auto;

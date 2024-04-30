@@ -7,9 +7,9 @@ import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './assets/styles.css'
 import { initializeApp } from 'firebase/app'
-import { getFirestore, collection } from 'firebase/firestore'
+import { getFirestore } from 'firebase/firestore'
 import { getAnalytics } from "firebase/analytics";
-// ... other firebase imports
+import { createPinia } from 'pinia'
 
 const firebaseConfig = {
     apiKey: process.env.VUE_APP_FIREBASE_KEY,
@@ -30,6 +30,7 @@ export const db = getFirestore(firebaseApp)
 
 const app = createApp(App)
 
+app.use(createPinia())
 app.use(router)
 app.use(VueFire, {
     firebaseApp,

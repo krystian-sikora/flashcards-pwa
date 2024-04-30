@@ -1,27 +1,12 @@
 <script setup>
 
-import IconLogout from '@/icons/IconLogout.vue'
-import { signOut, getAuth } from 'firebase/auth'
-import { useCurrentUser } from 'vuefire'
-import router from './router';
 
-const auth = getAuth()
-const user = useCurrentUser()
 
-function logOut() {
-  signOut(auth).then(() => {
-    console.log('logged out')
-    router.push('/')
-  }).catch((error) => {
-    console.error('failed to log out', error)
-  })
-}
 
 </script>
 
 <template>
-  <IconLogout class="icon-logout" v-if="user" @click="logOut()"/>
-  <nav>
+  <!-- <nav>
     <router-link to="/">Home</router-link> |
     <router-link to="/signin">Sing In</router-link> |
     <router-link to="/signup">Sign Up</router-link> |
@@ -40,14 +25,6 @@ function logOut() {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-.icon-logout {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  cursor: pointer;
-  width: 50px;
 }
 
 nav {

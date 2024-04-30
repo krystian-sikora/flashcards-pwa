@@ -28,7 +28,7 @@
 }
 
 .container > * {
-    max-width: 320px;
+    max-width: 400px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -89,4 +89,37 @@
     left: 16px;
     top: 13px;
     margin: 0 auto 0 auto;
+}
+
+.IconBackArrow {
+    width: 10px;
+    margin-bottom: 2px;
+}
+
+.back {
+    margin-left: 10px;
+}
+
+.navbar {
+    border-bottom: solid 0.1cap;
+    border-bottom-style: inset;
+}
+
+.title {
+    margin-right: 55px;
+}
+
+.bottom-container {
+    padding: 10px 0;
+    position: sticky;
+    bottom: 0;
+    right: 20px;
+    left: 20px;
+    background-color: white;
+}
+
+.top-container {
+    position: sticky; 
+    top: 0px; 
+    background-color: white;
 }

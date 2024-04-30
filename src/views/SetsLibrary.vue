@@ -2,9 +2,21 @@
 import IconBackArrow from '@/icons/IconBackArrow.vue';
 import { useSetsStore } from '@/store/flashcards'
 import { useRouter } from 'vue-router'
+import { computed } from "@vue/reactivity";
+import { onBeforeUnmount } from '@/views/SetsLibrary.vue'
 
 const setsStore = useSetsStore()
 const router = useRouter()
+
+const currentDate = new Date()
+const sessionDate = onBeforeUnmount
+
+const formattedTime = computed(() => {
+    const hours = Math.floor(currentDate.value / 3600)
+    const minutes = Math.floor((currentDate.value % 3600) / 60)
+    const seconds = currentDate.value % 60
+    return `${hours}:${minutes}:${seconds}`
+})
 
 </script>
 
@@ -17,13 +29,16 @@ const router = useRouter()
     </nav>
     <div class="container">
         <div class="container-mt-12">
-            <div class="rectangle" v-for="set in setsStore.sets" :key="set.id">
+            <div class="rectangle" v-for="(set, index) in setsStore.sets" :key=set.id>
                 <div class="row align-items-center">
                     <div class="col-3 set">
-                        &#9634; set 1
+                        &#9634; set {{ index + 1 }}
+                        
                     </div>
                     <div class="col-8 last-session-text" >
-                    Last session one week(s) ago
+                    <!-- Last session {{ sessionDate/onBeforeUnmount.formattedTime.value-formattedTime }} ago. -->
+                    {{ sessionDate }}
+                    {{ formattedTime }}
                     </div> 
                 </div>
                 <div class="row align-items-center">
@@ -86,5 +101,11 @@ const router = useRouter()
     font-size: small;
     text-align: right;
     margin-bottom: 20px;
+}
+
+.bottom {
+    width: 90%;
+    max-width: 400px;
+    margin-top: 10px;
 }
 </style>

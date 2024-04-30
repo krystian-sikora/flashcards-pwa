@@ -79,10 +79,6 @@ function signUp() {
     <div class="container">
         <h1 class="logo">Flashcards</h1>
         <h2 class="lato-light primary-text">Sign Up</h2>
-        <!-- <h1 v-if="errorCode" style="color: red;">
-            <p>todo: add error handling instead of below</p>
-            {{ errorCode }}
-        </h1> -->
         <div class="container-mt-12">
             <input type="email" 
                 class="form-control input" 

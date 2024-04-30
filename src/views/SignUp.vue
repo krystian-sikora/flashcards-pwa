@@ -62,6 +62,7 @@ function signUp() {
         .then((userCredential) => {
             // Signed up 
             const user = userCredential.user;
+            router.push({name: 'menu'})
             // ...
         })
         .catch((error) => {

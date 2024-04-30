@@ -15,16 +15,116 @@ const router = useRouter()
 
 const set = computed(() => setsStore.getSet(props.name))
 
-const i = ref(0)
+const isVisible = ref(false)
 
-const currentQuestion = computed(() => set.value.questions[i.value])
-const currentAnswer = computed(() => set.value.answers[i.value])
+const easyFlashcards = ref([])
+const mediumFlashcards = ref([])
+const hardFlashcards = ref([])
 
-function nextFlashcard() {
-    i.value = i.value + 1
+function populateFlashcards() {
+    for (let i = 0; i < set.value.questions.length; i++) {
+        hardFlashcards.value.push({
+            question: set.value.questions[i],
+            answer: set.value.answers[i],
+        })
+    }
 }
 
-const isVisible = ref(false)
+populateFlashcards()
+
+const nextFlashcard = ref({ question: hardFlashcards.value[0].question, answer: hardFlashcards.value[0].answer })
+
+const flashcardCategories = ref([easyFlashcards, mediumFlashcards, hardFlashcards])
+
+function setDiff(diff) {
+    if (nextFlashcard.value) {
+        let category = findAndDeleteFlashcard(nextFlashcard.value)
+        switch (diff) {
+            case 0:
+                if (category === 0) break
+                else easyFlashcards.value.push(nextFlashcard.value)
+                break
+            case 1:
+                mediumFlashcards.value.push(nextFlashcard.value)
+                break
+            case 2:
+                hardFlashcards.value.push(nextFlashcard.value)
+                break
+        }
+    }
+
+    chooseRandomFlashcard()
+}
+
+function findAndDeleteFlashcard(flashcard) {
+    for (let i = 0; i < flashcardCategories.value.length; i++) {
+        for (let j = 0; j < flashcardCategories.value[i].value.length; j++) {
+            if (flashcardCategories.value[i].value[j].question === flashcard.question 
+                    && flashcardCategories.value[i].value[j].answer === flashcard.answer) {
+                flashcardCategories.value[i].value.splice(j, 1)
+                return i
+            }
+        }
+    }
+    return null
+}
+
+function noFlashcardsLeft() {
+    for (let cat of flashcardCategories.value) {
+        if (cat.value.length > 0) {
+            return false
+        }
+    }
+    return true
+
+}
+
+function chooseRandomFlashcard() {
+    if (noFlashcardsLeft()) {
+        return
+    }
+    isVisible.value = false
+    const defaultCategoriesWeights = [1, 3, 5]
+    const categoriesWeights = []
+    for (const cat of flashcardCategories.value) {
+        if (cat.value.length > 0) {
+            categoriesWeights.push(defaultCategoriesWeights[flashcardCategories.value.indexOf(cat)])
+        } else {
+            categoriesWeights.push(0)
+        }
+    }
+
+    const randomCategoryIndex = getRandomWeightedIndex(categoriesWeights)
+    const randomCategory = flashcardCategories.value[randomCategoryIndex]
+
+    if (randomCategory.value.length > 0) {
+        const randomIndex = Math.floor(Math.random() * randomCategory.value.length)
+        nextFlashcard.value = randomCategory.value[randomIndex]
+        // randomCategory.splice(randomIndex, 1)
+        return
+    }
+    nextFlashcard.value = flashcardCategories.value[2].value[0]
+}
+
+function getRandomWeightedIndex(weights) {
+    let totalWeight = 0
+    
+    for (const weight of weights) {
+        totalWeight += weight
+    }
+
+    const randomValue = Math.random() * totalWeight;
+    let currentWeight = 0
+
+    for (let i = 0; i < weights.length; i++) {
+        currentWeight += weights[i];
+        if (randomValue < currentWeight) {
+            return i
+        }
+    }
+
+    return weights.length - 1; // Domyślnie zwraca indeks ostatniej kategorii
+}
 
 </script>
 
@@ -35,16 +135,23 @@ const isVisible = ref(false)
         </a>
         <div class="col title">Set_name</div>
     </nav>
-    <div class="study">
-        <div v-if="set">
-            <h1 id="flashcard-label1">{{ currentQuestion }}</h1>
-            <h2 id="flashcard-label2" @click="isVisible = true"> {{ isVisible ? currentAnswer : '?'}} </h2>
+    <div class="study" :style="noFlashcardsLeft() ? 'display: None' : ''">
+        <div v-if="nextFlashcard">
+            <h1 id="flashcard-label1">{{ nextFlashcard.question }}</h1>
+            <h2 id="flashcard-label2" @click="isVisible = true"> {{ isVisible ? nextFlashcard.answer : '?'}} </h2>
         </div> 
         <div class="button-container2">
-            <button @click="nextFlashcard()" type="button" class="btn btn-success difficulty">Easy</button>
-            <button @click="nextFlashcard()" type="button" class="btn btn-warning difficulty">Medium</button>
-            <button @click="nextFlashcard()" type="button" class="btn btn-danger difficulty">Hard</button>
+            <button @click="setDiff(0)" type="button" class="btn btn-success difficulty">Easy</button>
+            <button @click="setDiff(1)" type="button" class="btn btn-warning difficulty">Medium</button>
+            <button @click="setDiff(2)" type="button" class="btn btn-danger difficulty">Hard</button>
         </div>
+    </div>
+    <div class="container" :style="!noFlashcardsLeft() ? 'display: None' : ''">
+        <h1 class="lato-light primary-text">Congratulations!</h1>
+        <h2 class="lato-light primary-text">You have finished the set!</h2>
+        <button type="button" class="btn btn-secondary btn-first" @click="router.push({name: 'library'})">
+            Back to library
+        </button>
     </div>
 </template>
 

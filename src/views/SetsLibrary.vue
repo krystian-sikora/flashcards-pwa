@@ -2,21 +2,9 @@
 import IconBackArrow from '@/icons/IconBackArrow.vue';
 import { useSetsStore } from '@/store/flashcards'
 import { useRouter } from 'vue-router'
-import { computed } from "@vue/reactivity";
-import { onBeforeUnmount } from '@/views/SetsLibrary.vue'
 
 const setsStore = useSetsStore()
 const router = useRouter()
-
-const currentDate = new Date()
-const sessionDate = onBeforeUnmount
-
-const formattedTime = computed(() => {
-    const hours = Math.floor(currentDate.value / 3600)
-    const minutes = Math.floor((currentDate.value % 3600) / 60)
-    const seconds = currentDate.value % 60
-    return `${hours}:${minutes}:${seconds}`
-})
 
 </script>
 
@@ -36,9 +24,7 @@ const formattedTime = computed(() => {
                         
                     </div>
                     <div class="col-8 last-session-text" >
-                    <!-- Last session {{ sessionDate/onBeforeUnmount.formattedTime.value-formattedTime }} ago. -->
-                    {{ sessionDate }}
-                    {{ formattedTime }}
+                        Last session one week(s) ago
                     </div> 
                 </div>
                 <div class="row align-items-center">

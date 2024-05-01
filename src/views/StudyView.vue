@@ -149,23 +149,6 @@ onBeforeUnmount(() => {
   console.log(formattedTime.value)
 })
 
-
-// const startStudyTime = () => {
-//     startTimer()
-
-// }
-
-// const stopStudyTime = () => {
-//     stopTimer()
-//     console.log(formattedTime.value)
-
-// }
-
-// const showingUnder = () => {
-//   if(stopTimer==true)
-//     return formattedTime.value
-// }
-
 const startTime = ref(null)
 const elapsedTime = ref(0)
 

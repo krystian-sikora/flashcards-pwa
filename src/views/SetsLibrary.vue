@@ -3,28 +3,37 @@
 import IconBackArrow from '@/icons/IconBackArrow.vue';
 import { useSetsStore } from '@/store/flashcards'
 import { useRouter } from 'vue-router'
-import { useCollection, useFirestore, useCurrentUser } from 'vuefire'
-import { collection } from 'firebase/firestore';
+import { ref } from 'vue';
 
 const setsStore = useSetsStore()
 const router = useRouter()
-const db = useFirestore()
-const user = useCurrentUser()
 
-console.log(lastSessionDate())
+const lastSessionObj = ref({})
+
 function lastSessionDate() {
-    let array = []
-    let stats = useCollection(collection(db, 'users', user.value.uid, 'statistics'))
-    for (let item in stats.value){
-        array.push(item.lastSession)
-    }
-    console.log(stats.value)
-    console.log(array)
+    for (let item of setsStore.statistics) {
+        let date = item['lastSession'].toDate();
+        let now = new Date()
+        let diff = now - date
 
-    return array;
+        let seconds = Math.floor(diff / 1000);
+        let minutes = Math.floor(seconds / 60);
+        let hours = Math.floor(minutes / 60);
+        let days = Math.floor(hours / 24);
+        let years = Math.floor(days / 365);
+
+        let timeAgo = years > 0 ? years + " years ago" :
+                    days > 0 ? days + " days ago" :
+                    hours > 0 ? hours + " hours ago" :
+                    minutes > 0 ? minutes + " minutes ago" :
+                    seconds + " seconds ago";
+
+        lastSessionObj.value[item.set] = timeAgo
+    }
+    console.log(lastSessionObj.value)
 }
 
-const sessionArray = lastSessionDate()
+lastSessionDate()
 
 </script>
 
@@ -41,9 +50,9 @@ const sessionArray = lastSessionDate()
                 <div class="col-3 set">
                     &#9634; set {{ index + 1 }}
                 </div>
-                <div class="col-8 last-session-text" >
-                    Last session one week(s) ago
-                </div> 
+                <div class="col-8 last-session-text">
+                    Last session: {{ lastSessionObj[set.id] ? lastSessionObj[set.id] : 'Never' }}
+                </div>
             </div>
             <div class="row align-items-center">
                 <div class="col">

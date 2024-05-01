@@ -17,6 +17,10 @@ if (setsStore.sets.length === 0) {
   setsStore.addSnapshot(useCollection(collection(db, 'users', user.value.uid, 'flashcard-sets')))
 }
 
+if (setsStore.statistics.length === 0) {
+  setsStore.loadStatistics(useCollection(collection(db, 'users', user.value.uid, 'statistics')))
+}
+
 function logOut() {
   signOut(auth).then(() => {
     console.log('logged out')

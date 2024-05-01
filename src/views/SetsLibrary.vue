@@ -35,30 +35,27 @@ const sessionArray = lastSessionDate()
           </a>
           <div class="col title">Library</div>
     </nav>
-    <div class="container">
-        <div class="container-mt-12">
-            <div class="rectangle" v-for="(set, index) in setsStore.sets" :key=set.id>
-                <div class="row align-items-center">
-                    <div class="col-3 set">
-                        &#9634; set {{ index + 1 }}
-                        
-                    </div>
-                    <div class="col-8 last-session-text" >
-                        Last session one week(s) ago
-                    </div> 
+    <div class="container container-mt-12">
+        <div class="rectangle" v-for="(set, index) in setsStore.sets" :key=set.id>
+            <div class="row align-items-center">
+                <div class="col-3 set">
+                    &#9634; set {{ index + 1 }}
                 </div>
-                <div class="row align-items-center">
-                    <div class="col">
-                        <p class="set-name nav-link back" href="#" @click="router.push({name: 'setview' , params: {name: set.id}})"> {{ set.id }}</p>
-                    </div>
-                    <div class="col">
-                        <button type="button" class="btn btn-secondary btn-first study-button" @click="router.push({name: 'study', params: {name: set.id}})">Study</button>
-                    </div> 
+                <div class="col-8 last-session-text" >
+                    Last session one week(s) ago
+                </div> 
+            </div>
+            <div class="row align-items-center">
+                <div class="col">
+                    <p class="set-name nav-link back" href="#" @click="router.push({name: 'setview' , params: {name: set.id}})"> {{ set.id }}</p>
                 </div>
+                <div class="col">
+                    <button type="button" class="btn btn-secondary btn-first study-button" @click="router.push({name: 'study', params: {name: set.id}})">Study</button>
+                </div> 
             </div>
         </div>
     </div>
-    <div class="bottom-container">
+    <div class="bottom-container container container-mt-12">
         <button type="button" class="btn btn-secondary btn-first bottom" @click="router.push({name: 'newset'})">Create new set</button>
     </div>
 </template>
@@ -66,12 +63,12 @@ const sessionArray = lastSessionDate()
 <style scoped>
 
 .rectangle {
-  height: 120px;
-  width: auto;
-  background-color: #cccccc;
-  margin: auto;
-  margin-top: 10px;
-  border-radius: 10px;
+    height: 120px;
+    width: 90%;  
+    background-color: #cccccc;
+    margin: auto;
+    margin-top: 10px;
+    border-radius: 10px;
 }
 
 .sets-set {
@@ -107,11 +104,5 @@ const sessionArray = lastSessionDate()
     font-size: small;
     text-align: right;
     margin-bottom: 20px;
-}
-
-.bottom {
-    width: 90%;
-    max-width: 400px;
-    margin-top: 10px;
 }
 </style>

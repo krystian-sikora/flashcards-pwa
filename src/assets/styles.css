@@ -76,7 +76,7 @@
 }
 
 .btn-first, .btn-second {
-    width: 100%;
+    width: 90%;
     height: 45px;
     font-size: 1em;
     font-family: 'Lato';
@@ -111,12 +111,13 @@
 }
 
 .bottom-container {
-    padding: 10px 0;
+    padding: 10px 12px;
     position: sticky;
     bottom: 0;
     right: 20px;
     left: 20px;
     background-color: white;
+    margin: 0 auto;
 }
 
 .top-container {

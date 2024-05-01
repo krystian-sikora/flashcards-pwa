@@ -39,29 +39,33 @@ function deleteFlashcard() {
         <a class="nav-link back" href="#" @click="router.push({name: 'library'})"> 
             <IconBackArrow class="IconBackArrow"/> back
         </a> 
-        <div class="#" >{{ name }} </div>
+        <div class="col title" >{{ name }} </div>
         
         <IconBin class="IconBin" @click="router.push({name: 'library'}), deleteFlashcard()" style="margin-right: 10px;"/>
         
     </nav>
-    <div class="container">
-        <div class="container-mt-12">
-            <div class="rectangle" v-for="(num, index) in currentSet['questions'].length" :key="num">
-                <h6 class="flashcard-text lato-light">&#9634; Flashcard {{ index + 1 }}</h6>
-                <h1 class="flashcard-text">{{ currentSet['questions'][num - 1] }}</h1>
-                <h5 class="flashcard-text">{{ currentSet['answers'][num - 1] }}</h5>
-            </div>
-            <div class="bottom-container">
-                <button type="button" class="btn btn-secondary btn-first" style="margin-bottom: 10px;" 
-                @click="router.push({name: 'study', params: {name: currentSet.id}})">Study</button>
-                <button type="button" class="btn btn-secondary btn-first" 
-                @click="router.push({name: 'addflashcard', params: {name: name}})">Add new flashcard</button>
-            </div>
+    <div class="container container-mt-12">
+        <div class="rectangle" v-for="(num, index) in currentSet['questions'].length" :key="num">
+            <h6 class="flashcard-text lato-light">&#9634; Flashcard {{ index + 1 }}</h6>
+            <h1 class="flashcard-text">{{ currentSet['questions'][num - 1] }}</h1>
+            <h5 class="flashcard-text">{{ currentSet['answers'][num - 1] }}</h5>
         </div>
     </div>
-    
+    <div class="bottom-container container-mt-12" style="max-width: 500px; margin: 0 auto;">
+        <button type="button" class="btn btn-secondary btn-first bottom"
+            @click="router.push({name: 'study', params: {name: currentSet.id}})">Study</button>
+        <button type="button" class="btn btn-secondary btn-first bottom"
+            @click="router.push({name: 'addflashcard', params: {name: name}})">Add new flashcard</button>
+    </div>
 </template>
-<style>
+
+<style scoped>
+
+.bottom {
+    width: 90%;
+    max-width: 400px;
+    margin-top: 10px;
+}
 
 .btn-remove {
     margin-right: 5px;
@@ -69,7 +73,7 @@ function deleteFlashcard() {
 
 .rectangle {
     height: 120px;
-    width: 100% ;
+    width: 90% ;
     background-color: #cccccc;
     margin: auto;
     margin-top: 10px;
@@ -82,9 +86,11 @@ function deleteFlashcard() {
 }
 
 .IconBin {
-    width: 30px;
-    margin-bottom: 2px;
-    
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    height: 24px;
 }
 
 </style>

@@ -28,8 +28,8 @@ console.log(setsStore.sets)
     </nav>
     <div class="container">
         <div class="container-mt-12">
-            <div class="rectangle" v-for="num in currentSet['questions'].length" :key="num">
-                <h6 class="flashcard-text lato-light">&#9634; Flashcard 1</h6>
+            <div class="rectangle" v-for="(num, index) in currentSet['questions'].length" :key="num">
+                <h6 class="flashcard-text lato-light">&#9634; Flashcard {{ index + 1 }}</h6>
                 <h1 class="flashcard-text">{{ currentSet['questions'][num - 1] }}</h1>
                 <h5 class="flashcard-text">{{ currentSet['answers'][num - 1] }}</h5>
             </div>

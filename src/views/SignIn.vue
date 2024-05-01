@@ -97,7 +97,7 @@ onMounted(() => {
                 errorCode === 'auth/missing-password' ? 'border-color: red;' : ''"
                 >
                 <h1 v-if="errorCode === 'auth/invalid-credential'" style="color: red;">
-                    <p>Invalid passowrd</p>
+                    <p>Invalid password</p>
                 </h1>
                 <h1 v-if="errorCode === 'auth/missing-password'" style="color: red;">
                     <p>Missing password</p>

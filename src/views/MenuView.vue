@@ -1,8 +1,8 @@
 <script setup>
 import { useRouter } from 'vue-router'
 import { useSetsStore } from '@/store/flashcards'
-import { collection } from 'firebase/firestore';
-import { useFirestore, useCurrentUser, useCollection } from 'vuefire'
+import { collection, doc } from 'firebase/firestore';
+import { useFirestore, useCurrentUser, useCollection, useDocument } from 'vuefire'
 import IconLogout from '@/icons/IconLogout.vue'
 import { signOut, getAuth } from 'firebase/auth'
 
@@ -12,6 +12,8 @@ const setsStore = useSetsStore()
 const user = useCurrentUser()
 const auth = getAuth()
 const db = useFirestore()
+
+setsStore.updateLastSession(useDocument(doc(db, 'users', user.value.uid, 'previous-session', 'data')))
 
 if (setsStore.sets.length === 0) {
   setsStore.addSnapshot(useCollection(collection(db, 'users', user.value.uid, 'flashcard-sets')))
@@ -36,13 +38,14 @@ function logOut() {
       <button type="button" class="btn btn-secondary btn-first" 
         @click="router.push({name: 'newset'})">Create new set</button>
       <button type="button" class="btn btn-secondary btn-first" 
-        @click="router.push({name: 'library', params: {sets: 'set1xd'}})">Sets library</button>
+        @click="router.push({name: 'library'})">Sets library</button>
       <button type="button" class="btn btn-secondary btn-first" 
-        @click="router.push({name: 'study'})">Previous session</button>
+        @click="router.push({name: 'study', params:{name: setsStore.lastSession.set}, query: {lastSession: true}})" :disabled="!setsStore.lastSession">Previous session</button>
     </div>
   </div>
 </template>
-<style>
+
+<style scoped>
 
 .icon-logout {
   position: absolute;

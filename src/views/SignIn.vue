@@ -56,7 +56,7 @@ function signin() {
 onMounted(() => {
     getRedirectResult(auth)
         .then((result) => {
-            // console.log('redirect result', result)
+            console.log('redirect result', result)
             if (result && result.user) {
             // User is signed in.
                 redirectToHome()
@@ -75,8 +75,8 @@ onMounted(() => {
         <h1 class="logo">Flashcards</h1>
         <h2 class="lato-light primary-text">Sign in</h2>
         <h1 v-if="errorCode === 'auth/too-many-requests'" style="color: red;">
-                    <p>Too many requests, please wait...</p>
-                </h1>
+            <p>Too many requests, please wait...</p>
+        </h1>
         <div class="container-mt-12">
             <input type="email" 
                 class="form-control input" 

@@ -1,9 +1,5 @@
 {
   "projects": {
     "default": "flashcards-23ed2"
-  },
-  "rewrites": [ {
-    "source": "**",
-    "destination": "/index.html"
-  } ]
+  }
 }

@@ -23,7 +23,7 @@ const router = useRouter()
   </div>
 </template>
   
-<style>
+<style scoped>
 
 .flashcard-font {
     font-family: 'Chewy'; font-size: 30px;

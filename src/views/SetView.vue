@@ -42,7 +42,8 @@ console.log(setsStore.sets)
         @click="router.push({name: 'addflashcard', params: {name: name}})">Add new flashcard</button>
     </div>
 </template>
-<style>
+
+<style scoped>
 
 .rectangle {
     height: 120px;

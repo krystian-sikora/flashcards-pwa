@@ -264,7 +264,7 @@ const stopTimer = () => {
             <button @click="setDiff(2), hardSound.play(), vibrate()" type="button" class="btn btn-danger difficulty">Hard</button>
         </div>
     </div>
-    <div class="container" :style="!noFlashcardsLeft() ? 'display: None' : ''">
+    <div class="container" :style="!noFlashcardsLeft() ? 'display: None' : ''" style="margin-top: 220px;">
         <h1 class="lato-light primary-text">Congratulations!</h1>
         <h2 class="lato-light primary-text">You have finished the set!</h2>
         <button type="button" class="btn btn-secondary btn-first" @click="router.push({name: 'library'})">

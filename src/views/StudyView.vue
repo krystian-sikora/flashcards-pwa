@@ -202,27 +202,35 @@ const stopTimer = () => {
         </a>
         <div class="col title">Set_name</div>
     </nav>
-    <div class="study" :style="noFlashcardsLeft() ? 'display: None' : ''">
+    <div class="container" :style="noFlashcardsLeft() ? 'display: None' : ''">
         <div v-if="nextFlashcard">
             <h1 id="flashcard-label1">{{ nextFlashcard.question }}</h1>
             <h2 id="flashcard-label2" @click="isVisible = true"> {{ isVisible ? nextFlashcard.answer : '?'}} </h2>
-        </div> 
-        <div class="button-container2">
+        </div>   
+    </div>
+    <div class="button-container2" :style="noFlashcardsLeft() ? 'display: None' : ''">
             <button @click="setDiff(0), easySound.play(), vibrate()" type="button" class="btn btn-success difficulty">Easy</button>
             <button @click="setDiff(1), mediumSound.play(), vibrate()" type="button" class="btn btn-warning difficulty">Medium</button>
             <button @click="setDiff(2), hardSound.play(), vibrate()" type="button" class="btn btn-danger difficulty">Hard</button>
         </div>
-    </div>
-    <div class="container" :style="!noFlashcardsLeft() ? 'display: None' : ''">
+    <div class="container final-text" :style="!noFlashcardsLeft() ? 'display: None' : ''">
         <h1 class="lato-light primary-text">Congratulations!</h1>
         <h2 class="lato-light primary-text">You have finished the set!</h2>
-        <button type="button" class="btn btn-secondary btn-first" @click="router.push({name: 'library'})">
+        <button type="button" class="btn btn-secondary btn-first final-button" @click="router.push({name: 'library'})">
             Back to library
         </button>
     </div>
 </template>
 
 <style>
+.final-button {
+    margin-top: 30px;
+}
+
+
+.final-text {
+    margin-top: 200px;
+}
 
 .button-container2 {
     height: 45px;

@@ -50,6 +50,7 @@
     background-color: var(--btn-color);
     border-color: var(--btn-color);
     border-width: 1px;
+
 }
 
 .btn-first:hover {
@@ -75,7 +76,7 @@
 }
 
 .btn-first, .btn-second {
-    width: 90%;
+    width: 100%;
     height: 45px;
     font-size: 1em;
     font-family: 'Lato';

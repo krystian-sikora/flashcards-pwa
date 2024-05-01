@@ -33,14 +33,15 @@ console.log(setsStore.sets)
                 <h1 class="flashcard-text">{{ currentSet['questions'][num - 1] }}</h1>
                 <h5 class="flashcard-text">{{ currentSet['answers'][num - 1] }}</h5>
             </div>
+            <div class="bottom-container">
+                <button type="button" class="btn btn-secondary btn-first" style="margin-bottom: 10px;" 
+                @click="router.push({name: 'study', params: {name: currentSet.id}})">Study</button>
+                <button type="button" class="btn btn-secondary btn-first" 
+                @click="router.push({name: 'addflashcard', params: {name: name}})">Add new flashcard</button>
+            </div>
         </div>
     </div>
-    <div class="bottom-container">
-        <button type="button" class="btn btn-secondary btn-first" style="margin-bottom: 10px;" 
-        @click="router.push({name: 'study', params: {name: currentSet.id}})">Study</button>
-        <button type="button" class="btn btn-secondary btn-first" 
-        @click="router.push({name: 'addflashcard', params: {name: name}})">Add new flashcard</button>
-    </div>
+    
 </template>
 <style>
 

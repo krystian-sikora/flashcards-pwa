@@ -10,7 +10,7 @@ import { onMounted, ref } from 'vue'
 import { useFirebaseAuth } from 'vuefire'
 import IconGoogle from '@/icons/IconGoogle.vue'
 
-export const googleAuthProvider = new GoogleAuthProvider()
+export const googleAuthProvider = new GoogleAuthProvider();
 </script>
 
 <script setup>
@@ -35,6 +35,7 @@ function signinRedirect() {
     })
 }
 
+
 function signin() {
     signInWithEmailAndPassword(auth, email.value, password.value)
         .then((userCredential) => {
@@ -56,7 +57,7 @@ function signin() {
 onMounted(() => {
     getRedirectResult(auth)
         .then((result) => {
-            console.log('redirect result', result)
+            // console.log('redirect result', result)
             if (result && result.user) {
             // User is signed in.
                 redirectToHome()
@@ -75,8 +76,8 @@ onMounted(() => {
         <h1 class="logo">Flashcards</h1>
         <h2 class="lato-light primary-text">Sign in</h2>
         <h1 v-if="errorCode === 'auth/too-many-requests'" style="color: red;">
-            <p>Too many requests, please wait...</p>
-        </h1>
+                    <p>Too many requests, please wait...</p>
+                </h1>
         <div class="container-mt-12">
             <input type="email" 
                 class="form-control input" 
@@ -112,6 +113,7 @@ onMounted(() => {
                 <IconGoogle class="icon-google"/>
                 Sign In with Google
             </button>
+            
             <h2 class="link" @click="router.push({name: 'resetpassword'})">Forgot password?</h2>
             <h2 class="link" @click="router.push({name: 'signup'})">Dont't have an account?</h2>
         </div>

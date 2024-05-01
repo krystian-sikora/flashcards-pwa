@@ -50,6 +50,7 @@
     background-color: var(--btn-color);
     border-color: var(--btn-color);
     border-width: 1px;
+
 }
 
 .btn-first:hover {
@@ -110,12 +111,13 @@
 }
 
 .bottom-container {
-    padding: 10px 0;
+    padding: 10px 12px;
     position: sticky;
     bottom: 0;
     right: 20px;
     left: 20px;
     background-color: white;
+    margin: 0 auto;
 }
 
 .top-container {

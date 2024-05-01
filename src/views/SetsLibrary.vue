@@ -1,10 +1,51 @@
+<!-- eslint-disable no-unused-vars -->
 <script setup>
 import IconBackArrow from '@/icons/IconBackArrow.vue';
 import { useSetsStore } from '@/store/flashcards'
 import { useRouter } from 'vue-router'
+import { ref, watch } from 'vue';
+import { useCollection, useCurrentUser, useFirestore } from 'vuefire';
+import { collection } from 'firebase/firestore';
 
+const db = useFirestore()
+const user = useCurrentUser()
 const setsStore = useSetsStore()
 const router = useRouter()
+
+const lastSessionObj = ref({})
+
+watch(
+    () => setsStore.statistics,
+    () => loadStats()
+)
+
+setsStore.loadStatistics(useCollection(collection(db, 'users', user.value.uid, 'statistics')))
+
+function loadStats() {
+    let obj = {}
+    console.log(setsStore.statistics)
+    if(!setsStore.statistics) return
+    for (let item of setsStore.statistics) {
+        let date = item['lastSession'].toDate();
+        let now = new Date()
+        let diff = now - date
+
+        let seconds = Math.floor(diff / 1000);
+        let minutes = Math.floor(seconds / 60);
+        let hours = Math.floor(minutes / 60);
+        let days = Math.floor(hours / 24);
+        let years = Math.floor(days / 365);
+
+        let timeAgo = years > 0 ? years + " years ago" :
+                    days > 0 ? days + " days ago" :
+                    hours > 0 ? hours + " hours ago" :
+                    minutes > 0 ? minutes + " minutes ago" :
+                    seconds + " seconds ago";
+
+        obj[item.set] = timeAgo
+    }
+    lastSessionObj.value = obj
+}
 
 </script>
 
@@ -15,30 +56,27 @@ const router = useRouter()
           </a>
           <div class="col title">Library</div>
     </nav>
-    <div class="container">
-        <div class="container-mt-12">
-            <div class="rectangle" v-for="(set, index) in setsStore.sets" :key=set.id>
-                <div class="row align-items-center">
-                    <div class="col-3 set">
-                        &#9634; set {{ index + 1 }}
-                        
-                    </div>
-                    <div class="col-8 last-session-text" >
-                        Last session one week(s) ago
-                    </div> 
+    <div class="container container-mt-12">
+        <div class="rectangle" v-for="(set, index) in setsStore.sets" :key=set.id>
+            <div class="row align-items-center">
+                <div class="col-3 set">
+                    &#9634; set {{ index + 1 }}
                 </div>
-                <div class="row align-items-center">
-                    <div class="col">
-                        <p class="set-name nav-link back" href="#" @click="router.push({name: 'setview' , params: {name: set.id}})"> {{ set.id }}</p>
-                    </div>
-                    <div class="col">
-                        <button type="button" class="btn btn-secondary btn-first study-button" @click="router.push({name: 'study', params: {name: set.id}})">Study</button>
-                    </div> 
+                <div class="col-8 last-session-text">
+                    Last session: {{ lastSessionObj[set.id] ? lastSessionObj[set.id] : 'Never' }}
                 </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="col">
+                    <p class="set-name nav-link back" href="#" @click="router.push({name: 'setview' , params: {name: set.id}})"> {{ set.id }}</p>
+                </div>
+                <div class="col">
+                    <button type="button" class="btn btn-secondary btn-first study-button" @click="router.push({name: 'study', params: {name: set.id}})">Study</button>
+                </div> 
             </div>
         </div>
     </div>
-    <div class="bottom-container">
+    <div class="bottom-container container container-mt-12">
         <button type="button" class="btn btn-secondary btn-first bottom" @click="router.push({name: 'newset'})">Create new set</button>
     </div>
 </template>
@@ -46,12 +84,12 @@ const router = useRouter()
 <style scoped>
 
 .rectangle {
-  height: 120px;
-  width: auto;
-  background-color: #cccccc;
-  margin: auto;
-  margin-top: 10px;
-  border-radius: 10px;
+    height: 120px;
+    width: 90%;  
+    background-color: #cccccc;
+    margin: auto;
+    margin-top: 10px;
+    border-radius: 10px;
 }
 
 .sets-set {
@@ -87,11 +125,5 @@ const router = useRouter()
     font-size: small;
     text-align: right;
     margin-bottom: 20px;
-}
-
-.bottom {
-    width: 90%;
-    max-width: 400px;
-    margin-top: 10px;
 }
 </style>

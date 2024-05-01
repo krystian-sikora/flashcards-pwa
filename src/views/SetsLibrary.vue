@@ -3,14 +3,28 @@
 import IconBackArrow from '@/icons/IconBackArrow.vue';
 import { useSetsStore } from '@/store/flashcards'
 import { useRouter } from 'vue-router'
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
+import { useCollection, useCurrentUser, useFirestore } from 'vuefire';
+import { collection } from 'firebase/firestore';
 
+const db = useFirestore()
+const user = useCurrentUser()
 const setsStore = useSetsStore()
 const router = useRouter()
 
 const lastSessionObj = ref({})
 
-function lastSessionDate() {
+watch(
+    () => setsStore.statistics,
+    () => loadStats()
+)
+
+setsStore.loadStatistics(useCollection(collection(db, 'users', user.value.uid, 'statistics')))
+
+function loadStats() {
+    let obj = {}
+    console.log(setsStore.statistics)
+    if(!setsStore.statistics) return
     for (let item of setsStore.statistics) {
         let date = item['lastSession'].toDate();
         let now = new Date()
@@ -28,12 +42,10 @@ function lastSessionDate() {
                     minutes > 0 ? minutes + " minutes ago" :
                     seconds + " seconds ago";
 
-        lastSessionObj.value[item.set] = timeAgo
+        obj[item.set] = timeAgo
     }
-    console.log(lastSessionObj.value)
+    lastSessionObj.value = obj
 }
-
-lastSessionDate()
 
 </script>
 

@@ -76,7 +76,6 @@ function save() {
     <div class="container">
         <div class="container-mt-12">
             <h1 class="lato-light primary-text">Add new flashcard</h1>
-            <input type="file" accept="image/*" capture="camera">
             <textarea class="form-control input" 
                 id="exampleFormControlTextarea1" 
                 rows="3"

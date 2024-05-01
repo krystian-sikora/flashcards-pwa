@@ -6,8 +6,8 @@ import { useSetsStore } from '@/store/flashcards'
 import { useRouter, useRoute } from 'vue-router'
 import { computed } from "@vue/reactivity";
 import { onMounted, onBeforeUnmount } from 'vue';
-import { setDoc, doc, deleteDoc } from 'firebase/firestore'
-import { useCurrentUser, useDocument, useFirestore } from 'vuefire'
+import { setDoc, doc, deleteDoc, collection } from 'firebase/firestore'
+import { useCollection, useCurrentUser, useDocument, useFirestore } from 'vuefire'
 
 // eslint-disable-next-line no-unused-vars
 const props = defineProps({

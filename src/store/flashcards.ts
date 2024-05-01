@@ -4,6 +4,7 @@ export const useSetsStore = defineStore('sets', {
   state: () => ({ 
     sets: [],
     lastSession: null,
+    statistics: []
   }),
   getters: {
     getSet: (state) => (id) => state.sets.find((set) => set['id'] === id),
@@ -14,6 +15,9 @@ export const useSetsStore = defineStore('sets', {
     },
     updateLastSession(snapshot) {
         this.lastSession = snapshot
+    },
+    loadStatistics(snapshot) {
+        this.statistics = snapshot
     }
   },
 })

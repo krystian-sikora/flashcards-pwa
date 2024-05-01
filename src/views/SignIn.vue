@@ -10,7 +10,7 @@ import { onMounted, ref } from 'vue'
 import { useFirebaseAuth } from 'vuefire'
 import IconGoogle from '@/icons/IconGoogle.vue'
 
-export const googleAuthProvider = new GoogleAuthProvider()
+export const googleAuthProvider = new GoogleAuthProvider();
 </script>
 
 <script setup>
@@ -34,6 +34,7 @@ function signinRedirect() {
         error.value = reason
     })
 }
+
 
 function signin() {
     signInWithEmailAndPassword(auth, email.value, password.value)
@@ -112,6 +113,7 @@ onMounted(() => {
                 <IconGoogle class="icon-google"/>
                 Sign In with Google
             </button>
+            
             <h2 class="link" @click="router.push({name: 'resetpassword'})">Forgot password?</h2>
             <h2 class="link" @click="router.push({name: 'signup'})">Dont't have an account?</h2>
         </div>

@@ -1,12 +1,19 @@
+<!-- eslint-disable no-unused-vars -->
 <script setup>
 import IconBackArrow from '@/icons/IconBackArrow.vue';
+import IconBin from '@/icons/IconBin.vue';
 import defineProps from 'vue'
 import { useSetsStore } from '@/store/flashcards'
 import { useRouter } from 'vue-router'
+import { useFirestore, useCurrentUser, useCollection} from 'vuefire'
 import { computed } from "@vue/reactivity";
+import { doc, deleteDoc } from "firebase/firestore";
+import { collection } from 'firebase/firestore';
 
 const setsStore = useSetsStore()
 const router = useRouter()
+const user = useCurrentUser()
+const db = useFirestore()
 
 // eslint-disable-next-line no-unused-vars
 const props = defineProps({
@@ -17,14 +24,25 @@ const currentSet = computed(() => setsStore.getSet(props.name))
 console.log(currentSet)
 console.log(setsStore.sets)
 
+
+function deleteFlashcard() {
+    deleteDoc(doc(db, 'users', user.value.uid, 'flashcard-sets', props.name))
+    setsStore.addSnapshot(useCollection(collection(db, 'users', user.value.uid, 'flashcard-sets')))
+    router.push({ name: 'library' })
+}
+
 </script>
 
 <template>
      <nav class="navbar lato-light top-container">
-          <a class="nav-link back" href="#" @click="router.push({name: 'library'})"> 
+     
+        <a class="nav-link back" href="#" @click="router.push({name: 'library'})"> 
             <IconBackArrow class="IconBackArrow"/> back
-          </a>
-          <div class="col title" >{{ name }}</div>
+        </a> 
+        <div class="#" >{{ name }} </div>
+        
+        <IconBin class="IconBin" @click="router.push({name: 'library'}), deleteFlashcard()" style="margin-right: 10px;"/>
+        
     </nav>
     <div class="container">
         <div class="container-mt-12">
@@ -45,6 +63,10 @@ console.log(setsStore.sets)
 </template>
 <style>
 
+.btn-remove {
+    margin-right: 5px;
+}
+
 .rectangle {
     height: 120px;
     width: 100% ;
@@ -57,6 +79,12 @@ console.log(setsStore.sets)
 .flashcard-text {
     text-align: left;
     margin-left: 8px;
+}
+
+.IconBin {
+    width: 30px;
+    margin-bottom: 2px;
+    
 }
 
 </style>

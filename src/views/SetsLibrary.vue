@@ -1,10 +1,30 @@
+<!-- eslint-disable no-unused-vars -->
 <script setup>
 import IconBackArrow from '@/icons/IconBackArrow.vue';
 import { useSetsStore } from '@/store/flashcards'
 import { useRouter } from 'vue-router'
+import { useCollection, useFirestore, useCurrentUser } from 'vuefire'
+import { collection } from 'firebase/firestore';
 
 const setsStore = useSetsStore()
 const router = useRouter()
+const db = useFirestore()
+const user = useCurrentUser()
+
+console.log(lastSessionDate())
+function lastSessionDate() {
+    let array = []
+    let stats = useCollection(collection(db, 'users', user.value.uid, 'statistics'))
+    for (let item in stats.value){
+        array.push(item.lastSession)
+    }
+    console.log(stats.value)
+    console.log(array)
+
+    return array;
+}
+
+const sessionArray = lastSessionDate()
 
 </script>
 

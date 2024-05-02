@@ -47,7 +47,6 @@ function signin() {
         .catch((error) => {
             errorCode.value = error.code;
             const errorMessage = error.message;
-            console.log(errorCode.value)
             // todo: handle errors like auth/invalid-email etc
   });
 }
@@ -56,7 +55,6 @@ function signin() {
 onMounted(() => {
     getRedirectResult(auth)
         .then((result) => {
-            console.log('redirect result', result)
             if (result && result.user) {
             // User is signed in.
                 redirectToHome()

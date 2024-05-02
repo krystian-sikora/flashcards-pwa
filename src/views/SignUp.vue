@@ -68,8 +68,6 @@ function signUp() {
         .catch((error) => {
             errorCode.value = error.code;
             const errorMessage = error.message;
-            console.log(errorCode.value)
-            console.log(errorMessage)
         });
 }
 

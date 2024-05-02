@@ -31,10 +31,7 @@ const mediumFlashcards = ref([])
 const hardFlashcards = ref([])
 
 function populateFlashcards() {
-    console.log(route.query.lastSession)
     if (route.query.lastSession) {
-        console.log('last session')
-        console.log(setsStore.lastSession)
         easyFlashcards.value = setsStore.lastSession.easy
         mediumFlashcards.value = setsStore.lastSession.medium
         hardFlashcards.value = setsStore.lastSession.hard
@@ -183,7 +180,6 @@ function saveSessionData() {
                 numberOfFlashcards: getNumberOfFlashcards(),
                 lastSession: new Date()
             }
-            console.log(data)
         } else {
             data = {
                 set: set.value.id,
@@ -267,8 +263,8 @@ const stopTimer = () => {
     <div class="container" :style="!noFlashcardsLeft() ? 'display: None' : ''" style="margin-top: 220px;">
         <h1 class="lato-light primary-text">Congratulations!</h1>
         <h2 class="lato-light primary-text">You have finished the set!</h2>
-        <button type="button" class="btn btn-secondary btn-first" @click="router.push({name: 'library'})">
-            Back to library
+        <button type="button" class="btn btn-secondary btn-first" @click="router.push({name: 'menu'})">
+            Back to menu
         </button>
     </div>
 </template>

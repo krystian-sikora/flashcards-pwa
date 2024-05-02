@@ -24,17 +24,9 @@ watch(
 )
 
 function loadStats() {
-    console.log('stats')
     if(!setsStore.statistics) return
 
-    console.log(setsStore.statistics)
-
-    for (let i in setsStore.statistics) {
-        console.log(`i: ${i}`)
-    }
-
     for (let item of setsStore.statistics) {
-        console.log(item['lastSession'])
         let date = item['lastSession'].toDate();
         let now = new Date()
         let diff = now - date
@@ -53,7 +45,6 @@ function loadStats() {
 
         lastSessionObj.value[item.set] = timeAgo
     }
-    console.log(lastSessionObj.value)
 }
 
 </script>

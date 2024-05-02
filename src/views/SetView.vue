@@ -21,9 +21,6 @@ const props = defineProps({
 })
 
 const currentSet = computed(() => setsStore.getSet(props.name))
-console.log(currentSet)
-console.log(setsStore.sets)
-
 
 function deleteFlashcard() {
     deleteDoc(doc(db, 'users', user.value.uid, 'flashcard-sets', props.name))

@@ -21,7 +21,6 @@ if (setsStore.sets.length === 0) {
 
 function logOut() {
   signOut(auth).then(() => {
-    console.log('logged out')
     router.push('/')
   }).catch((error) => {
     console.error('failed to log out', error)
@@ -40,7 +39,7 @@ function logOut() {
       <button type="button" class="btn btn-secondary btn-first" 
         @click="router.push({name: 'library'})">Sets library</button>
       <button type="button" class="btn btn-secondary btn-first" 
-        @click="router.push({name: 'study', params:{name: setsStore.lastSession.set}, query: {lastSession: true}})" :disabled="!setsStore.lastSession">Previous session</button>
+        @click="router.push({name: 'study', params:{name: setsStore.lastSession.set}, query: {lastSession: true}})" :disabled="!setsStore.lastSession">Resume session</button>
     </div>
   </div>
 </template>
